@@ -17,7 +17,7 @@ import java.util.concurrent.locks.Lock;
  */
 @Slf4j
 public class RedisDistributedLock implements Lock {
-    private RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     private final String lockName;
     private final Object lockValue;

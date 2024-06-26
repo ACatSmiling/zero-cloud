@@ -59,6 +59,8 @@ public class InventoryServiceImpl implements InventoryService {
             } else {
                 retMessage = "商品卖完了";
             }
+
+            testReEnter(lockName, lockValue, expireTime);
         } finally {
             lock.unlock();
         }

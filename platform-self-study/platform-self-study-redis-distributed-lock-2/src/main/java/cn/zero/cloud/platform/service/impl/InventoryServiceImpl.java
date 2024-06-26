@@ -4,9 +4,11 @@ import cn.hutool.core.util.IdUtil;
 import cn.zero.cloud.platform.factory.RedisDistributedLockFactory;
 import cn.zero.cloud.platform.service.InventoryService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.locks.Lock;
@@ -57,6 +59,8 @@ public class InventoryServiceImpl implements InventoryService {
             } else {
                 retMessage = "商品卖完了";
             }
+
+            testReEnter(lockName, lockValue, expireTime);
         } finally {
             lock.unlock();
         }
