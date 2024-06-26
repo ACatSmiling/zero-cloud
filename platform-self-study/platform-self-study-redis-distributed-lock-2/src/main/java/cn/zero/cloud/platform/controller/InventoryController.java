@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/21 22:20
  */
 @RestController
-@RequestMapping(value = "/distributed/lock")
+@RequestMapping(value = "/inventory")
 public class InventoryController {
     private final InventoryService inventoryService;
 
@@ -24,7 +23,7 @@ public class InventoryController {
         this.inventoryService = inventoryService;
     }
 
-    @GetMapping(value = "/inventory/sale", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/sale", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String sale() {
         return inventoryService.sale();

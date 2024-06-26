@@ -14,8 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.locks.Lock;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/21 22:22
  */
 @Slf4j

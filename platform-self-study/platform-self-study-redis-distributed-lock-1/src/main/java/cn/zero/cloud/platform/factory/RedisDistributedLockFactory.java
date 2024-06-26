@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.locks.Lock;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/25 23:11
  */
 @Component
