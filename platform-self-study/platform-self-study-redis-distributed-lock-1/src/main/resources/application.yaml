@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: platform-self-study-redis-distributed-lock-1
+  profiles:
+    default: dev
+
+server:
+  port: 3786
+  servlet:
+    context-path: /zeloud/redis
+
+lock:
+  type: redis
