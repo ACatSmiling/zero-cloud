@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2024/6/14 23:31
  */
 @SpringBootApplication
-public class SelfStudyRedisApplication {
+public class RedisApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SelfStudyRedisApplication.class, args);
+        SpringApplication.run(RedisApplication.class, args);
     }
 }
