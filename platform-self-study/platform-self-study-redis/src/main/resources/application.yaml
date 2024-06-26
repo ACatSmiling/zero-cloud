@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: platform-self-study-redis
+  profiles:
+    default: dev
+
+server:
+  port: 6311
+  servlet:
+    context-path: /platform/redis
