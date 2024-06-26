@@ -1,8 +1,7 @@
 package cn.zero.cloud.platform.service;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/20 22:46
  */
 public interface RedissonApiService {

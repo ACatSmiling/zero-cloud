@@ -3,8 +3,7 @@ package cn.zero.cloud.platform.demo;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/14 23:05
  */
 @Slf4j
