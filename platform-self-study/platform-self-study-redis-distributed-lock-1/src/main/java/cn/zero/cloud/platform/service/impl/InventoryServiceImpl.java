@@ -4,13 +4,12 @@ import cn.hutool.core.util.IdUtil;
 import cn.zero.cloud.platform.factory.RedisDistributedLockFactory;
 import cn.zero.cloud.platform.service.InventoryService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
 /**
@@ -37,10 +36,11 @@ public class InventoryServiceImpl implements InventoryService {
         this.redisDistributedLockFactory = redisDistributedLockFactory;
     }
 
-    // 改进版本六：实现锁的可重入
+    // 改进版本七：实现锁的自动续期，后台自定义扫描程序，如果规定时间内没有完成业务逻辑，会调用加钟自动续期的脚本
     @Override
     public String sale() {
         String lockName = "RedisDistributedLock";
+        // 注意，对于可重入锁，订单号，也就是lockValue，需要保持一致
         String lockValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
         long expireTime = 30L;
 
@@ -55,7 +55,44 @@ public class InventoryServiceImpl implements InventoryService {
             // 3 扣减库存
             if (inventoryNumber > 0) {
                 redisTemplate.opsForValue().set("inventory001", String.valueOf(--inventoryNumber));
-                retMessage = "成功卖出一个商品，库存剩余: " + inventoryNumber;
+                retMessage = "成功卖出一个商品，库存剩余：" + inventoryNumber;
+            } else {
+                retMessage = "商品卖完了";
+            }
+
+            // 暂停120s，测试自动续期
+            try {
+                TimeUnit.SECONDS.sleep(120);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        } finally {
+            lock.unlock();
+        }
+        return retMessage + "\t" + "订单号：" + lockValue + "\t" + "服务端口号：" + port;
+    }
+
+    /*
+    // 改进版本六：实现锁的可重入
+    @Override
+    public String sale() {
+        String lockName = "RedisDistributedLock";
+        // 注意，对于可重入锁，订单号，也就是lockValue，需要保持一致
+        String lockValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
+        long expireTime = 30L;
+
+        Lock lock = redisDistributedLockFactory.getDistributedLock(lockType, lockName, lockValue, expireTime);
+        lock.lock();
+        String retMessage;
+        try {
+            // 1 查询库存信息
+            String result = (String) redisTemplate.opsForValue().get("inventory001");
+            // 2 判断库存是否足够
+            int inventoryNumber = result == null ? 0 : Integer.parseInt(result);
+            // 3 扣减库存
+            if (inventoryNumber > 0) {
+                redisTemplate.opsForValue().set("inventory001", String.valueOf(--inventoryNumber));
+                retMessage = "成功卖出一个商品，库存剩余：" + inventoryNumber;
             } else {
                 retMessage = "商品卖完了";
             }
@@ -64,18 +101,29 @@ public class InventoryServiceImpl implements InventoryService {
         } finally {
             lock.unlock();
         }
-        return retMessage + "\t" + "服务端口号：" + port;
+        return retMessage + "\t" + "订单号：" + lockValue + "\t" + "服务端口号：" + port;
     }
 
     private void testReEnter(String lockName, Object lockValue, long expireTime) {
         Lock lock = redisDistributedLockFactory.getDistributedLock(lockType, lockName, lockValue, expireTime);
         lock.lock();
         try {
-            System.out.println("################测试可重入锁####################################");
+            log.info("################测试可重入锁1####################################");
+            testReEnter2(lockName, lockValue, expireTime);
         } finally {
             lock.unlock();
         }
     }
+
+    private void testReEnter2(String lockName, Object lockValue, long expireTime) {
+        Lock lock = redisDistributedLockFactory.getDistributedLock(lockType, lockName, lockValue, expireTime);
+        lock.lock();
+        try {
+            log.info("################测试可重入锁2####################################");
+        } finally {
+            lock.unlock();
+        }
+    }*/
 
     /*
     // 改进版本五：使用Lua脚本，保证释放锁过程的原子性

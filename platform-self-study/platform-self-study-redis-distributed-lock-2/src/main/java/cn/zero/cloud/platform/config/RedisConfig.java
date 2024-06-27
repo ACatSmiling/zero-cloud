@@ -1,11 +1,13 @@
 package cn.zero.cloud.platform.config;
 
+import cn.hutool.core.util.ReflectUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 
 /**
  * @author Xisun Wang
@@ -19,15 +21,24 @@ public class RedisConfig {
 
         redisTemplate.setConnectionFactory(redisConnectionFactory);
 
-        // 设置key序列化方式String
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        // 设置value的序列化方式JSON，使用GenericJackson2JsonRedisSerializer替换默认序列化
-        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        // 使用String序列化方式，序列化key
+        redisTemplate.setKeySerializer(RedisSerializer.string());
+        redisTemplate.setHashKeySerializer(RedisSerializer.string());
 
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+        // 使用JSON序列化方式(使用的是Jackson库)，序列化value
+        redisTemplate.setValueSerializer(buildRedisSerializer());
+        redisTemplate.setHashValueSerializer(buildRedisSerializer());
 
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
+    }
+
+    public static RedisSerializer<?> buildRedisSerializer() {
+        RedisSerializer<Object> json = RedisSerializer.json();
+
+        // 解决LocalDateTime的序列化
+        ObjectMapper objectMapper = (ObjectMapper) ReflectUtil.getFieldValue(json, "mapper");
+        objectMapper.registerModules(new JavaTimeModule());
+        return json;
     }
 }

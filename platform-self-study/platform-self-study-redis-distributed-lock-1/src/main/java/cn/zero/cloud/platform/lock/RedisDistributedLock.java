@@ -5,8 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -66,9 +65,12 @@ public class RedisDistributedLock implements Lock {
                         "return 0 " +
                         "end";
 
-        while (Boolean.FALSE.equals(redisTemplate.execute(new DefaultRedisScript<>(script, Boolean.class), List.of(lockName), lockValue, String.valueOf(expireTime)))) {
+        while (Boolean.FALSE.equals(redisTemplate.execute(new DefaultRedisScript<>(script, Boolean.class), List.of(lockName), lockValue, expireTime))) {
             TimeUnit.MILLISECONDS.sleep(50);
         }
+
+        // 自动续期
+        renewExpire();
 
         return true;
     }
@@ -83,12 +85,33 @@ public class RedisDistributedLock implements Lock {
                 "return 0 " +
                 "end";
 
-        Boolean isUnlock = redisTemplate.execute(new DefaultRedisScript<>(script, Boolean.class), Collections.singletonList(lockName), lockValue, String.valueOf(expireTime));
+        Boolean isUnlock = redisTemplate.execute(new DefaultRedisScript<>(script, Boolean.class), Collections.singletonList(lockName), lockValue);
         log.info("Trace of redis distributed lock, DeleteLockResult, lockName: {}, lockValue: {}, expireTime: {}, isUnlock: {}", lockName, lockValue, expireTime, isUnlock);
 
         if (isUnlock == null) {
             throw new RuntimeException("This lock '" + lockName + "' doesn't EXIST");
         }
+    }
+
+    /**
+     * 锁的自动续期
+     */
+    private void renewExpire() {
+        String script =
+                "if redis.call('HEXISTS',KEYS[1],ARGV[1]) == 1 then " +
+                        "return redis.call('EXPIRE',KEYS[1],ARGV[2]) " +
+                        "else " +
+                        "return 0 " +
+                        "end";
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (Boolean.TRUE.equals(redisTemplate.execute(new DefaultRedisScript<>(script, Boolean.class), Collections.singletonList(lockName), lockValue, expireTime))) {
+                    renewExpire();
+                }
+            }
+        }, (this.expireTime * 1000) / 3);
     }
 
     @Override
