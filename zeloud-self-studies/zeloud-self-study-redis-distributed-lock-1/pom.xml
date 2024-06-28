@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.zero.cloud</groupId>
-        <artifactId>zeloud-self-study</artifactId>
+        <artifactId>zeloud-self-studies</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
