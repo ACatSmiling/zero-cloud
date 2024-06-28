@@ -9,7 +9,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zeloud-self-study</artifactId>
+    <artifactId>zeloud-self-studies</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>zeloud-self-study-redis</module>
