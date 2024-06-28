@@ -1,0 +1,7 @@
+spring:
+  config:
+    import:
+      - file:/opt/zeloud/conf/cache.properties
+      - file:/opt/zeloud/conf/kafka.properties
+      - file:/opt/zeloud/conf/redis.properties
+      - file:/opt/zeloud/conf/thread.properties

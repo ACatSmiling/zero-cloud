@@ -1,0 +1,8 @@
+server:
+  port: 9527
+  servlet:
+    context-path: /business
+
+spring:
+  profiles:
+    default: dev

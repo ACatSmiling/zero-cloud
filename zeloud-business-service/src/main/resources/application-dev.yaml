@@ -1,0 +1,5 @@
+spring:
+  config:
+    import:
+      - "classpath:conf/cache.properties"
+      - "classpath:conf/redis.properties"
