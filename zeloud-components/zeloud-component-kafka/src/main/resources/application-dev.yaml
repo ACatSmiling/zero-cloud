@@ -1,0 +1,5 @@
+spring:
+  config:
+    import:
+      - "classpath:conf/kafka.properties"
+      - "classpath:conf/security.properties"
