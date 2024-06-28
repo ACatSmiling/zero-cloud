@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>zeloud-basic</module>
-        <module>zeloud-self-study</module>
+        <module>zeloud-self-studies</module>
         <module>zeloud-components</module>
         <module>zeloud-business-service</module>
     </modules>
