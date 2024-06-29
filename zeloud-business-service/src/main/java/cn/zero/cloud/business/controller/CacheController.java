@@ -1,7 +1,7 @@
 package cn.zero.cloud.business.controller;
 
 import cn.zero.cloud.platform.Telemetry;
-import cn.zero.cloud.platform.utils.PlatFormJsonUtil;
+import cn.zero.cloud.component.general.tool.utils.ZeloudJsonUtil;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class CacheController {
         if (cache != null) {
             Book book = cache.get(key, Book.class);
             if (book != null) {
-                log.info("Cache hit for key: {}, value: {}", key, PlatFormJsonUtil.serializeToJson(book));
+                log.info("Cache hit for key: {}, value: {}", key, ZeloudJsonUtil.serializeToJson(book));
             } else {
                 log.info("Cache miss for key: {}", key);
             }
