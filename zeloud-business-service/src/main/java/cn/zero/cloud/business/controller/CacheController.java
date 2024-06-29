@@ -15,8 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import static cn.zero.cloud.platform.constants.TelemetryConstants.*;
-
 /**
  * @author Xisun Wang
  * @since 6/14/2024 09:59
