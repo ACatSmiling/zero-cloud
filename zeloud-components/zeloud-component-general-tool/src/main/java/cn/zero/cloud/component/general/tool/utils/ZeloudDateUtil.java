@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.utils;
+package cn.zero.cloud.component.general.tool.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -19,8 +19,8 @@ import java.util.TimeZone;
  * @author Xisun Wang
  * @since 2024/3/14 13:45
  */
-public class PlatFormDateUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlatFormDateUtil.class);
+public class ZeloudDateUtil {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZeloudDateUtil.class);
 
     private final static DateTimeFormatter LOCAL_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -28,7 +28,7 @@ public class PlatFormDateUtil {
 
     private final static Set<String> AVAILABLE_ZONE_IDS = ZoneId.getAvailableZoneIds();
 
-    private PlatFormDateUtil() {
+    private ZeloudDateUtil() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -227,18 +227,18 @@ public class PlatFormDateUtil {
         System.out.println(AVAILABLE_ZONE_IDS);
 
         System.out.println("-------------------获取默认时区当前时间-------------------");
-        System.out.println(PlatFormDateUtil.getCurrentTimeDefaultTimeZone());// 2024-04-07 10:34:50
-        System.out.println(PlatFormDateUtil.getCurrentTimeDefaultTimeZoneWithUTC());// 2024-04-07T10:34:50.116+0800
+        System.out.println(ZeloudDateUtil.getCurrentTimeDefaultTimeZone());// 2024-04-07 10:34:50
+        System.out.println(ZeloudDateUtil.getCurrentTimeDefaultTimeZoneWithUTC());// 2024-04-07T10:34:50.116+0800
 
         System.out.println("-------------------获取指定时区当前时间-------------------");
-        System.out.println(PlatFormDateUtil.getCurrentTimeSpecifyTimeZone("America/New_York"));// 2024-04-06 22:34:50
-        System.out.println(PlatFormDateUtil.getCurrentTimeSpecifyTimeZone("UTC"));// 2024-04-07 02:34:50
-        System.out.println(PlatFormDateUtil.getCurrentTimeSpecifyTimeZone("Europe/London"));// 2024-04-07 03:34:50
-        System.out.println(PlatFormDateUtil.getCurrentTimeSpecifyTimeZone("Asia/Shanghai"));// 2024-04-07 10:34:50
-        System.out.println(PlatFormDateUtil.getCurrentTimeSpecifyTimeZoneWithUTC("America/New_York"));// 2024-04-06T22:34:50.123-0400
-        System.out.println(PlatFormDateUtil.getCurrentTimeSpecifyTimeZoneWithUTC("UTC"));// 2024-04-07T02:34:50.123+0000
-        System.out.println(PlatFormDateUtil.getCurrentTimeSpecifyTimeZoneWithUTC("Europe/London"));// 2024-04-07T03:34:50.123+0100
-        System.out.println(PlatFormDateUtil.getCurrentTimeSpecifyTimeZoneWithUTC("Asia/Shanghai"));// 2024-04-07T10:34:50.123+0800
+        System.out.println(ZeloudDateUtil.getCurrentTimeSpecifyTimeZone("America/New_York"));// 2024-04-06 22:34:50
+        System.out.println(ZeloudDateUtil.getCurrentTimeSpecifyTimeZone("UTC"));// 2024-04-07 02:34:50
+        System.out.println(ZeloudDateUtil.getCurrentTimeSpecifyTimeZone("Europe/London"));// 2024-04-07 03:34:50
+        System.out.println(ZeloudDateUtil.getCurrentTimeSpecifyTimeZone("Asia/Shanghai"));// 2024-04-07 10:34:50
+        System.out.println(ZeloudDateUtil.getCurrentTimeSpecifyTimeZoneWithUTC("America/New_York"));// 2024-04-06T22:34:50.123-0400
+        System.out.println(ZeloudDateUtil.getCurrentTimeSpecifyTimeZoneWithUTC("UTC"));// 2024-04-07T02:34:50.123+0000
+        System.out.println(ZeloudDateUtil.getCurrentTimeSpecifyTimeZoneWithUTC("Europe/London"));// 2024-04-07T03:34:50.123+0100
+        System.out.println(ZeloudDateUtil.getCurrentTimeSpecifyTimeZoneWithUTC("Asia/Shanghai"));// 2024-04-07T10:34:50.123+0800
 
         System.out.println("-------------------格式化时间-------------------");
         Date date = new Date(1712457290111L);

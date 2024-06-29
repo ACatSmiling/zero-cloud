@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.utils;
+package cn.zero.cloud.component.general.tool.utils;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,8 +32,8 @@ import java.util.List;
  * @author Xisun Wang
  * @since 2024/3/21 11:12
  */
-public class PlatFormJsonUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlatFormJsonUtil.class);
+public class ZeloudJsonUtil {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZeloudJsonUtil.class);
 
     private static final Version VERSION = new Version(1, 0, 0, null, "cn.zero.cloud", "platform");
 
@@ -45,7 +45,7 @@ public class PlatFormJsonUtil {
         PRETTY_OBJECT_WRITER = getPrettyWriter();
     }
 
-    private PlatFormJsonUtil() {
+    private ZeloudJsonUtil() {
         throw new IllegalStateException("Utility class!");
     }
 
@@ -243,32 +243,32 @@ public class PlatFormJsonUtil {
         // 1. 添加自定义序列化器，序列化java.util.Date对象，UTC格式
         module.addSerializer(new StdSerializer<>(Date.class) {
             public void serialize(Date date, JsonGenerator jg, SerializerProvider sp) throws IOException {
-                jg.writeString(PlatFormDateUtil.formatDateWithUTC(date));
+                jg.writeString(ZeloudDateUtil.formatDateWithUTC(date));
             }
         });
         // 2. 添加自定义序列化器，序列化java.time.Instant对象，UTC格式
         module.addSerializer(new StdSerializer<>(Instant.class) {
             public void serialize(Instant instant, JsonGenerator jg, SerializerProvider sp) throws IOException {
-                jg.writeString(PlatFormDateUtil.formatInstantWithUTC(instant));
+                jg.writeString(ZeloudDateUtil.formatInstantWithUTC(instant));
             }
         });
         // 3. 添加自定义序列化器，序列化java.time.LocalDateTime对象，UTC格式
         module.addSerializer(new StdSerializer<>(LocalDateTime.class) {
             public void serialize(LocalDateTime localDateTime, JsonGenerator jg, SerializerProvider sp) throws IOException {
-                jg.writeString(PlatFormDateUtil.formatLocalDateTimeWithUTC(localDateTime));
+                jg.writeString(ZeloudDateUtil.formatLocalDateTimeWithUTC(localDateTime));
             }
         });
         // 4. 添加自定义序列化器，序列化java.time.ZonedDateTime对象，UTC格式
         module.addSerializer(new StdSerializer<>(ZonedDateTime.class) {
             public void serialize(ZonedDateTime zonedDateTime, JsonGenerator jg, SerializerProvider sp) throws IOException {
-                jg.writeString(PlatFormDateUtil.formatTimeWithUTC(zonedDateTime));
+                jg.writeString(ZeloudDateUtil.formatTimeWithUTC(zonedDateTime));
             }
         });
         // 5. 添加自定义反序列化器，反序列化java.util.Date对象，UTC格式
         module.addDeserializer(Date.class, new StdScalarDeserializer<>(Date.class) {
             public Date deserialize(JsonParser jp, DeserializationContext dc) throws IOException {
                 try {
-                    ZonedDateTime zonedDateTime = PlatFormDateUtil.parseStringForUTC(jp.getText());
+                    ZonedDateTime zonedDateTime = ZeloudDateUtil.parseStringForUTC(jp.getText());
                     return Date.from(zonedDateTime.toInstant());
                 } catch (IllegalArgumentException e) {
                     throw JsonMappingException.from(jp, "Unable to parse date: " + e.getMessage());
@@ -279,7 +279,7 @@ public class PlatFormJsonUtil {
         module.addDeserializer(Instant.class, new StdScalarDeserializer<>(Instant.class) {
             public Instant deserialize(JsonParser jp, DeserializationContext dc) throws IOException {
                 try {
-                    ZonedDateTime zonedDateTime = PlatFormDateUtil.parseStringForUTC(jp.getText());
+                    ZonedDateTime zonedDateTime = ZeloudDateUtil.parseStringForUTC(jp.getText());
                     return zonedDateTime.toInstant();
                 } catch (IllegalArgumentException e) {
                     throw JsonMappingException.from(jp, "Unable to parse date: " + e.getMessage());
@@ -290,7 +290,7 @@ public class PlatFormJsonUtil {
         module.addDeserializer(LocalDateTime.class, new StdScalarDeserializer<>(LocalDateTime.class) {
             public LocalDateTime deserialize(JsonParser jp, DeserializationContext dc) throws IOException {
                 try {
-                    ZonedDateTime zonedDateTime = PlatFormDateUtil.parseStringForUTC(jp.getText());
+                    ZonedDateTime zonedDateTime = ZeloudDateUtil.parseStringForUTC(jp.getText());
                     return zonedDateTime.toLocalDateTime();
                 } catch (IllegalArgumentException e) {
                     throw JsonMappingException.from(jp, "Unable to parse date: " + e.getMessage());
@@ -301,7 +301,7 @@ public class PlatFormJsonUtil {
         module.addDeserializer(ZonedDateTime.class, new StdScalarDeserializer<>(ZonedDateTime.class) {
             public ZonedDateTime deserialize(JsonParser jp, DeserializationContext dc) throws IOException {
                 try {
-                    return PlatFormDateUtil.parseStringForUTC(jp.getText());
+                    return ZeloudDateUtil.parseStringForUTC(jp.getText());
                 } catch (IllegalArgumentException e) {
                     throw JsonMappingException.from(jp, "Unable to parse date: " + e.getMessage());
                 }
@@ -319,16 +319,16 @@ public class PlatFormJsonUtil {
         jsonDemo.setInstant(Instant.ofEpochMilli(epoch));
         jsonDemo.setLocalDateTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(epoch), ZoneId.systemDefault()));
         jsonDemo.setZonedDateTime(ZonedDateTime.ofInstant(Instant.ofEpochMilli(epoch), ZoneId.systemDefault()));
-        System.out.println(PlatFormJsonUtil.serializeToJson(jsonDemo));// {"timeStr":"2024-04-07T10:34:50.111+0800","date":"2024-04-07T10:34:50.111+0800","instant":"2024-04-07T10:34:50.111+0800","localDateTime":"2024-04-07T10:34:50.111+0800","zonedDateTime":"2024-04-07T10:34:50.111+0800"}
-        System.out.println(PlatFormJsonUtil.serializeToJsonPretty(jsonDemo));// 与上面的输出对比，是格式化后的json
+        System.out.println(ZeloudJsonUtil.serializeToJson(jsonDemo));// {"timeStr":"2024-04-07T10:34:50.111+0800","date":"2024-04-07T10:34:50.111+0800","instant":"2024-04-07T10:34:50.111+0800","localDateTime":"2024-04-07T10:34:50.111+0800","zonedDateTime":"2024-04-07T10:34:50.111+0800"}
+        System.out.println(ZeloudJsonUtil.serializeToJsonPretty(jsonDemo));// 与上面的输出对比，是格式化后的json
 
         String jsonStr = "{\"timeStr\":\"2024-04-07T10:34:50.111+0800\",\"date\":\"2024-04-07T10:34:50.111+0800\",\"instant\":\"2024-04-07T10:34:50.111+0800\",\"localDateTime\":\"2024-04-07T10:34:50.111+0800\",\"zonedDateTime\":\"2024-04-07T10:34:50.111+0800\"}";
-        System.out.println(PlatFormJsonUtil.deserializeToClassType(jsonStr, JsonDemo.class));// JsonDemo{timeStr='2024-04-07T10:34:50.111+0800', date=Sun Apr 07 10:34:50 CST 2024, instant=2024-04-07T02:34:50.111Z, localDateTime=2024-04-07T10:34:50.111, zonedDateTime=2024-04-07T10:34:50.111+08:00}
+        System.out.println(ZeloudJsonUtil.deserializeToClassType(jsonStr, JsonDemo.class));// JsonDemo{timeStr='2024-04-07T10:34:50.111+0800', date=Sun Apr 07 10:34:50 CST 2024, instant=2024-04-07T02:34:50.111Z, localDateTime=2024-04-07T10:34:50.111, zonedDateTime=2024-04-07T10:34:50.111+08:00}
 
-        System.out.println(PlatFormJsonUtil.serializeToJson("abc:a"));// "abc:a"
+        System.out.println(ZeloudJsonUtil.serializeToJson("abc:a"));// "abc:a"
 
         String jsonStr2 = "{\"timeStr\":\"2024-04-07T10:34:50.111+0800\",\"date\":\"2024-04-10T04:55:24Z\",\"instant\":\"2024-04-07T10:34:50.111+0800\",\"localDateTime\":\"2024-04-07T10:34:50.111+0800\",\"zonedDateTime\":\"2024-04-07T10:34:50.111+0800\"}";
-        System.out.println(PlatFormJsonUtil.deserializeToClassType(jsonStr2, JsonDemo.class));
+        System.out.println(ZeloudJsonUtil.deserializeToClassType(jsonStr2, JsonDemo.class));
 
 
         System.out.println("----------------------------------------------");
@@ -342,9 +342,9 @@ public class PlatFormJsonUtil {
         List<JsonDemo> jsonDemos = new ArrayList<>();
         jsonDemos.add(jsonDemo);
         jsonDemos.add(jsonDemo2);
-        String jsons = PlatFormJsonUtil.serializeToJson(jsonDemos);
+        String jsons = ZeloudJsonUtil.serializeToJson(jsonDemos);
         System.out.println(jsons);// [{"timeStr":"2024-04-07T10:34:50.111+0800","date":"2024-04-07T10:34:50.111+0800","instant":"2024-04-07T10:34:50.111+0800","localDateTime":"2024-04-07T10:34:50.111+0800","zonedDateTime":"2024-04-07T10:34:50.111+0800"},{"timeStr":"2024-04-08T10:34:50.111+0800","date":"2024-04-07T10:36:30.111+0800","instant":"2024-04-07T10:36:30.111+0800","localDateTime":"2024-04-07T10:36:30.111+0800","zonedDateTime":"2024-04-07T10:36:30.111+0800"}]
-        List<JsonDemo> object = PlatFormJsonUtil.deserializeToReferenceType(jsons, new TypeReference<>() {
+        List<JsonDemo> object = ZeloudJsonUtil.deserializeToReferenceType(jsons, new TypeReference<>() {
         });
         System.out.println(object);// [JsonDemo{timeStr='2024-04-07T10:34:50.111+0800', date=Sun Apr 07 10:34:50 CST 2024, instant=2024-04-07T02:34:50.111Z, localDateTime=2024-04-07T10:34:50.111, zonedDateTime=2024-04-07T10:34:50.111+08:00}, JsonDemo{timeStr='2024-04-08T10:34:50.111+0800', date=Sun Apr 07 10:36:30 CST 2024, instant=2024-04-07T02:36:30.111Z, localDateTime=2024-04-07T10:36:30.111, zonedDateTime=2024-04-07T10:36:30.111+08:00}]
     }
