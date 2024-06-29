@@ -1,9 +1,9 @@
 package cn.zero.cloud.business.controller;
 
 import cn.zero.cloud.business.common.entity.dto.UpdateWorldDTO;
-import cn.zero.cloud.platform.Telemetry;
-import cn.zero.cloud.platform.factory.TelemetryManualLoggerFactory;
-import cn.zero.cloud.platform.logger.manual.TelemetryCommonTypeLoggerImpl;
+import cn.zero.cloud.component.telemetry.Telemetry;
+import cn.zero.cloud.component.telemetry.factory.TelemetryManualLoggerFactory;
+import cn.zero.cloud.component.telemetry.logger.manual.TelemetryCommonTypeLoggerImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.TimeUnit;
 
-import static cn.zero.cloud.platform.constants.TelemetryConstants.FeatureType.TEST_FEATURE;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.MetricType.TEST_METRIC;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.ModuleType.TEST_API;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.ObjectType.COMMON_OBJECT;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.ObjectType.TEST_OBJECT;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.VerbType.SELECT;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.VerbType.UPDATE;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.FeatureType.TEST_FEATURE;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.MetricType.TEST_METRIC;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ModuleType.TEST_API;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ObjectType.COMMON_OBJECT;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ObjectType.TEST_OBJECT;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.VerbType.SELECT;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.VerbType.UPDATE;
 
 /**
  * @author Xisun Wang
