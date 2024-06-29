@@ -1,8 +1,8 @@
 package cn.zero.cloud.business.controller;
 
 import cn.zero.cloud.business.common.constants.CustomizeStatusConstants;
-import cn.zero.cloud.platform.type.impl.PlatFormJsonException;
-import cn.zero.cloud.platform.type.impl.RestResponseException;
+import cn.zero.cloud.component.exception.type.impl.PlatFormJsonException;
+import cn.zero.cloud.component.exception.type.impl.RestResponseException;
 import cn.zero.cloud.platform.Telemetry;
 import feign.FeignException;
 import feign.Request;

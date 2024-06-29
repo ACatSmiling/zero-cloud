@@ -1,7 +1,7 @@
-package cn.zero.cloud.platform.resolver.impl;
+package cn.zero.cloud.component.exception.resolver.impl;
 
-import cn.zero.cloud.platform.resolver.AbstractExceptionResolver;
-import cn.zero.cloud.platform.type.impl.RestResponseException;
+import cn.zero.cloud.component.exception.type.impl.RestResponseException;
+import cn.zero.cloud.component.exception.resolver.AbstractExceptionResolver;
 import cn.zero.cloud.platform.utils.PlatFormDateUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

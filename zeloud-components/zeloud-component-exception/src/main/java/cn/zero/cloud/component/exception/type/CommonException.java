@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.type;
+package cn.zero.cloud.component.exception.type;
 
 /**
  * @author Xisun Wang

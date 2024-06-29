@@ -1,8 +1,8 @@
-package cn.zero.cloud.platform;
+package cn.zero.cloud.component.exception;
 
-import cn.zero.cloud.platform.factory.ExceptionResolverFactory;
-import cn.zero.cloud.platform.type.impl.PlatFormJsonException;
-import cn.zero.cloud.platform.type.impl.RestResponseException;
+import cn.zero.cloud.component.exception.type.impl.PlatFormJsonException;
+import cn.zero.cloud.component.exception.type.impl.RestResponseException;
+import cn.zero.cloud.component.exception.factory.ExceptionResolverFactory;
 import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

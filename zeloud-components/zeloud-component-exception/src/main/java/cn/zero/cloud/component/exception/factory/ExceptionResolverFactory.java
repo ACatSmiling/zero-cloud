@@ -1,14 +1,17 @@
-package cn.zero.cloud.platform.factory;
+package cn.zero.cloud.component.exception.factory;
 
-import cn.zero.cloud.platform.resolver.AbstractExceptionResolver;
+import cn.zero.cloud.component.exception.constants.ExceptionConstants;
+import cn.zero.cloud.component.exception.resolver.impl.GlobalExceptionResolver;
+import cn.zero.cloud.component.exception.resolver.impl.IllegalStateExceptionResolver;
+import cn.zero.cloud.component.exception.resolver.impl.RestResponseExceptionResolver;
+import cn.zero.cloud.component.exception.type.impl.RestResponseException;
+import cn.zero.cloud.component.exception.resolver.impl.IllegalArgumentExceptionResolver;
+import cn.zero.cloud.component.exception.resolver.AbstractExceptionResolver;
 import cn.zero.cloud.platform.resolver.impl.*;
-import cn.zero.cloud.platform.type.impl.RestResponseException;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
-
-import static cn.zero.cloud.platform.constants.ExceptionConstants.UTILITY_CLASS;
 
 /**
  * @author Xisun Wang
@@ -16,7 +19,7 @@ import static cn.zero.cloud.platform.constants.ExceptionConstants.UTILITY_CLASS;
  */
 public final class ExceptionResolverFactory {
     private ExceptionResolverFactory() {
-        throw new IllegalStateException(UTILITY_CLASS);
+        throw new IllegalStateException(ExceptionConstants.UTILITY_CLASS);
     }
 
     private static final Map<Class<? extends Exception>, Supplier<AbstractExceptionResolver>> EXCEPTION_RESOLVERS = new HashMap<>();

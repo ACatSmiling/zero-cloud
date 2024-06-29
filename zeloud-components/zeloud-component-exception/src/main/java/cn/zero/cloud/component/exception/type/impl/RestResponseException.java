@@ -1,6 +1,6 @@
-package cn.zero.cloud.platform.type.impl;
+package cn.zero.cloud.component.exception.type.impl;
 
-import cn.zero.cloud.platform.type.CommonException;
+import cn.zero.cloud.component.exception.type.CommonException;
 
 import java.io.Serial;
 import java.util.LinkedHashMap;

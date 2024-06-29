@@ -1,6 +1,6 @@
-package cn.zero.cloud.platform.resolver;
+package cn.zero.cloud.component.exception.resolver;
 
-import cn.zero.cloud.platform.type.impl.PlatFormJsonException;
+import cn.zero.cloud.component.exception.type.impl.PlatFormJsonException;
 import cn.zero.cloud.platform.utils.PlatFormDateUtil;
 import cn.zero.cloud.platform.utils.PlatFormJsonUtil;
 import org.apache.commons.lang3.StringUtils;
