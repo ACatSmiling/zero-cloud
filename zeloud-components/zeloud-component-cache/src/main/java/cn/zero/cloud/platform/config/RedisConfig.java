@@ -1,6 +1,9 @@
 package cn.zero.cloud.platform.config;
 
+import cn.hutool.core.util.ReflectUtil;
 import cn.zero.cloud.platform.config.properties.RedisProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
@@ -28,23 +32,30 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(connectionFactory);
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 
-        // 设置key的序列化方式为String
-        template.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
 
-        // 设置value的序列化方式为JSON，这样可以将Java对象直接存储为JSON字符串
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        // 使用String序列化方式，序列化key
+        redisTemplate.setKeySerializer(RedisSerializer.string());
+        redisTemplate.setHashKeySerializer(RedisSerializer.string());
 
-        // 设置hash key和hash value的序列化方式
-        template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+        // 使用JSON序列化方式(使用的是Jackson库)，序列化value
+        redisTemplate.setValueSerializer(buildRedisSerializer());
+        redisTemplate.setHashValueSerializer(buildRedisSerializer());
 
         // 初始化RedisTemplate序列化设置
-        template.afterPropertiesSet();
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
 
-        return template;
+    public static RedisSerializer<?> buildRedisSerializer() {
+        RedisSerializer<Object> json = RedisSerializer.json();
+
+        // 解决LocalDateTime的序列化
+        ObjectMapper objectMapper = (ObjectMapper) ReflectUtil.getFieldValue(json, "mapper");
+        objectMapper.registerModules(new JavaTimeModule());
+        return json;
     }
 }

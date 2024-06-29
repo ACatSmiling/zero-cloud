@@ -17,7 +17,6 @@ public class RedisProperties {
     }
 
     public void setEnableRedis(boolean enableRedis) {
-
         this.enableRedis = enableRedis;
     }
 }

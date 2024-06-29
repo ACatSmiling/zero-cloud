@@ -14,6 +14,7 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
@@ -51,11 +52,16 @@ public class CacheConfig {
 
         // 定义缓存配置
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofHours(cacheDuration)) // 设置缓存有效期
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer())) // 设置缓存键的序列化机制
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer())) // 设置缓存值的序列化机制
-                .computePrefixWith(name -> cacheProperties.getCachePrefix() + name + ":") // 设置缓存键的前缀生成策略，例如AIBRIDGE_CACHE_REDIS_TEST:abcd
-                .disableCachingNullValues(); // 不缓存空值
+                // 设置缓存有效期
+                .entryTtl(Duration.ofHours(cacheDuration))
+                // 设置缓存键的序列化机制
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.string()))
+                // 设置缓存值的序列化机制
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisConfig.buildRedisSerializer()))
+                // 设置缓存键的前缀生成策略，例如AIBRIDGE_CACHE_REDIS_TEST:abcd
+                .computePrefixWith(name -> cacheProperties.getCachePrefix() + name + ":")
+                // 不缓存空值
+                .disableCachingNullValues();
 
         Set<String> cacheNames = new HashSet<>();
         cacheNames.add(cacheName);
@@ -64,10 +70,14 @@ public class CacheConfig {
         configMap.put(cacheName, redisCacheConfiguration.entryTtl(Duration.ofHours(cacheDuration)));
 
         return RedisCacheManager.builder(connectionFactory)
-                .cacheDefaults(redisCacheConfiguration) // 设置默认的缓存配置
-                .transactionAware() // 设置RedisCacheManager具有事务感知能力，意味着缓存操作可以参与到Spring管理的事务中，确保缓存的一致性。如果有一个Spring事务正在进行，缓存的变化会在事务成功提交时一起应用
-                .initialCacheNames(cacheNames) // 设置初始的缓存名称集合，让RedisCacheManager预先知道这些缓存的存在，从而在应用启动时创建和配置这些缓存
-                .withInitialCacheConfigurations(configMap) // 为特定的缓存名称提供特殊的缓存配置，可以为不同的缓存名称设置不同的缓存配置
+                // 设置默认的缓存配置
+                .cacheDefaults(redisCacheConfiguration)
+                // 设置RedisCacheManager具有事务感知能力，意味着缓存操作可以参与到Spring管理的事务中，确保缓存的一致性。如果有一个Spring事务正在进行，缓存的变化会在事务成功提交时一起应用
+                .transactionAware()
+                // 设置初始的缓存名称集合，让RedisCacheManager预先知道这些缓存的存在，从而在应用启动时创建和配置这些缓存
+                .initialCacheNames(cacheNames)
+                // 为特定的缓存名称提供特殊的缓存配置，可以为不同的缓存名称设置不同的缓存配置
+                .withInitialCacheConfigurations(configMap)
                 .build();
     }
 
