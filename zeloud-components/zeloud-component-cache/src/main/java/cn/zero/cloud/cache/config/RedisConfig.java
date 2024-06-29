@@ -1,7 +1,7 @@
-package cn.zero.cloud.platform.config;
+package cn.zero.cloud.cache.config;
 
 import cn.hutool.core.util.ReflectUtil;
-import cn.zero.cloud.platform.config.properties.RedisProperties;
+import cn.zero.cloud.cache.config.properties.RedisProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
@@ -11,9 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * @author Xisun Wang
