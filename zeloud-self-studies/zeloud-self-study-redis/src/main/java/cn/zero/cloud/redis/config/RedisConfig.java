@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.config;
+package cn.zero.cloud.redis.config;
 
 import cn.hutool.core.util.ReflectUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;

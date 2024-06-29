@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.demo;
+package cn.zero.cloud.redis.demo;
 
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;

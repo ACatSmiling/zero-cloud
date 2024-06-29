@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.demo;
+package cn.zero.cloud.redis.demo;
 
 import lombok.extern.slf4j.Slf4j;
 

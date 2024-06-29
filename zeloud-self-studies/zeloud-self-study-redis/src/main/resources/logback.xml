@@ -19,7 +19,7 @@
             <level>DEBUG</level>
         </filter>
         <file>
-            ${logging.path}/platform_self_study.log
+            ${logging.path}/zeloud_self_study.log
         </file>
         <encoder>
             <pattern>${message.format}</pattern>

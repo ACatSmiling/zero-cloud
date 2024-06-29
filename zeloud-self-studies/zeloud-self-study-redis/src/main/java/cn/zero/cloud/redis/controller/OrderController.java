@@ -1,6 +1,6 @@
-package cn.zero.cloud.platform.controller;
+package cn.zero.cloud.redis.controller;
 
-import cn.zero.cloud.platform.service.OrderService;
+import cn.zero.cloud.redis.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

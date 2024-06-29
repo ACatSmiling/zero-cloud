@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.hash;
+package cn.zero.cloud.redis.hash;
 
 import java.util.HashSet;
 import java.util.Set;

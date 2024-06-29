@@ -1,6 +1,6 @@
-package cn.zero.cloud.platform.service.impl;
+package cn.zero.cloud.redis.service.impl;
 
-import cn.zero.cloud.platform.service.RedissonApiService;
+import cn.zero.cloud.redis.service.RedissonApiService;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBloomFilter;

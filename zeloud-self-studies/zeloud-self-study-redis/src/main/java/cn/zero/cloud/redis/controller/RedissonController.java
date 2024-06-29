@@ -1,6 +1,6 @@
-package cn.zero.cloud.platform.controller;
+package cn.zero.cloud.redis.controller;
 
-import cn.zero.cloud.platform.service.RedissonApiService;
+import cn.zero.cloud.redis.service.RedissonApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
