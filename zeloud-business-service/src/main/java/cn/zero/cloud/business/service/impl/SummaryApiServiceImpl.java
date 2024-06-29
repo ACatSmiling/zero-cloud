@@ -1,7 +1,7 @@
 package cn.zero.cloud.business.service.impl;
 
-import cn.zero.cloud.platform.kafka.common.message.internal.summary.SummaryMessage;
-import cn.zero.cloud.platform.kafka.producer.business.event.impl.SummaryGeneratedEvent;
+import cn.zero.cloud.component.kafka.common.message.internal.summary.SummaryMessage;
+import cn.zero.cloud.component.kafka.producer.business.event.impl.SummaryGeneratedEvent;
 import cn.zero.cloud.business.service.SummaryApiService;
 import cn.zero.cloud.component.general.tool.utils.ZeloudJsonUtil;
 import lombok.extern.slf4j.Slf4j;

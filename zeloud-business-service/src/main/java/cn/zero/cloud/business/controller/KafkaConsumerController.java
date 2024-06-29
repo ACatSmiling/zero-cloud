@@ -1,8 +1,8 @@
 package cn.zero.cloud.business.controller;
 
-import cn.zero.cloud.platform.kafka.common.pojo.healthcheck.HealthCheckSummary;
-import cn.zero.cloud.platform.kafka.common.pojo.healthcheck.HealthCheckType;
-import cn.zero.cloud.platform.kafka.consumer.healthcheck.KafkaConsumerHealthCheckContainerService;
+import cn.zero.cloud.component.kafka.common.pojo.healthcheck.HealthCheckSummary;
+import cn.zero.cloud.component.kafka.common.pojo.healthcheck.HealthCheckType;
+import cn.zero.cloud.component.kafka.consumer.healthcheck.KafkaConsumerHealthCheckContainerService;
 import cn.zero.cloud.platform.Telemetry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
