@@ -29,6 +29,7 @@ public class RedisConfig {
         redisTemplate.setValueSerializer(buildRedisSerializer());
         redisTemplate.setHashValueSerializer(buildRedisSerializer());
 
+        // 初始化RedisTemplate序列化设置
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
