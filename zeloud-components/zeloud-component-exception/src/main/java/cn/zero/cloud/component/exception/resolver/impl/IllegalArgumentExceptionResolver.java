@@ -1,7 +1,7 @@
 package cn.zero.cloud.component.exception.resolver.impl;
 
 import cn.zero.cloud.component.exception.resolver.AbstractExceptionResolver;
-import cn.zero.cloud.platform.utils.PlatFormDateUtil;
+import cn.zero.cloud.component.general.tool.utils.ZeloudDateUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class IllegalArgumentExceptionResolver extends AbstractExceptionResolver 
         IllegalArgumentException ex = (IllegalArgumentException) e;
         Map<String, Object> body = generateMessageBody(ex.getMessage());
         addAdditionalMessage(body, ex.getLocalizedMessage());
-        body.put(TIMESTAMP, PlatFormDateUtil.getCurrentTimeDefaultTimeZone());
+        body.put(TIMESTAMP, ZeloudDateUtil.getCurrentTimeDefaultTimeZone());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 }

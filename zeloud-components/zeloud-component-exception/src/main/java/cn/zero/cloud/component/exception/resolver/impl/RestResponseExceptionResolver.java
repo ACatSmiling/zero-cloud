@@ -2,7 +2,7 @@ package cn.zero.cloud.component.exception.resolver.impl;
 
 import cn.zero.cloud.component.exception.type.impl.RestResponseException;
 import cn.zero.cloud.component.exception.resolver.AbstractExceptionResolver;
-import cn.zero.cloud.platform.utils.PlatFormDateUtil;
+import cn.zero.cloud.component.general.tool.utils.ZeloudDateUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -36,7 +36,7 @@ public class RestResponseExceptionResolver extends AbstractExceptionResolver {
         if (additionalMessages != null && !additionalMessages.isEmpty()) {
             body.put(ADDITIONAL_MESSAGES, additionalMessages);
         }
-        body.put(TIMESTAMP, PlatFormDateUtil.getCurrentTimeDefaultTimeZone());
+        body.put(TIMESTAMP, ZeloudDateUtil.getCurrentTimeDefaultTimeZone());
         return ResponseEntity.status(httpStatus).body(body);
     }
 }

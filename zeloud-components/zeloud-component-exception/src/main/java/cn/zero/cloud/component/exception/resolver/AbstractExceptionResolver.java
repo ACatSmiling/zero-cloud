@@ -1,8 +1,8 @@
 package cn.zero.cloud.component.exception.resolver;
 
 import cn.zero.cloud.component.exception.type.impl.PlatFormJsonException;
-import cn.zero.cloud.platform.utils.PlatFormDateUtil;
-import cn.zero.cloud.platform.utils.PlatFormJsonUtil;
+import cn.zero.cloud.component.general.tool.utils.ZeloudDateUtil;
+import cn.zero.cloud.component.general.tool.utils.ZeloudJsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,8 +56,8 @@ public abstract class AbstractExceptionResolver {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put(RESPONSE_STATUS, ex.getStatus());
         body.put(ADDITIONAL_MESSAGES, ex.getAdditionalMessages());
-        body.put(TIMESTAMP, PlatFormDateUtil.getCurrentTimeDefaultTimeZone());
-        return PlatFormJsonUtil.serializeToJson(body);
+        body.put(TIMESTAMP, ZeloudDateUtil.getCurrentTimeDefaultTimeZone());
+        return ZeloudJsonUtil.serializeToJson(body);
     }
 
     /**
