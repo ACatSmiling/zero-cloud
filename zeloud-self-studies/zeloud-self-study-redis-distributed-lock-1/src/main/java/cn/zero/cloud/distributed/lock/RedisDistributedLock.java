@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.lock;
+package cn.zero.cloud.distributed.lock;
 
 import jakarta.annotation.Nonnull;
 import lombok.extern.slf4j.Slf4j;

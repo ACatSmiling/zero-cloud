@@ -1,6 +1,6 @@
-package cn.zero.cloud.platform.controller;
+package cn.zero.cloud.distributed.controller;
 
-import cn.zero.cloud.platform.service.InventoryService;
+import cn.zero.cloud.distributed.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
