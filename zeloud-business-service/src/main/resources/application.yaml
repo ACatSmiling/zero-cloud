@@ -1,8 +1,10 @@
+spring:
+  application:
+    name: zeloud-business-service
+  profiles:
+    default: dev
+
 server:
   port: 9527
   servlet:
-    context-path: /business
-
-spring:
-  profiles:
-    default: dev
+    context-path: /zeloud/business
