@@ -3,7 +3,7 @@ package cn.zero.cloud.platform.logger;
 import cn.zero.cloud.platform.pojo.FeatureName;
 import cn.zero.cloud.platform.pojo.TelemetryLog;
 import cn.zero.cloud.platform.filter.FeatureNameFilter;
-import cn.zero.cloud.platform.utils.PlatFormJsonUtil;
+import cn.zero.cloud.component.general.tool.utils.ZeloudJsonUtil;
 
 import java.util.Collections;
 import java.util.Set;
@@ -21,7 +21,7 @@ public abstract class AbstractTelemetryLogger implements TelemetryLogger {
     public void info(TelemetryLog log) {
         log.validate();
         if (!isFiltered(log)) {
-            String logAsJson = PlatFormJsonUtil.serializeToJson(log);
+            String logAsJson = ZeloudJsonUtil.serializeToJson(log);
             writeLog(logAsJson);
         }
     }

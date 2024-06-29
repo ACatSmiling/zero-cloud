@@ -3,7 +3,7 @@ package cn.zero.cloud.platform.pojo;
 import cn.zero.cloud.platform.constants.TelemetryConstants;
 import cn.zero.cloud.platform.factory.TelemetryLoggerFactory;
 import cn.zero.cloud.platform.logger.TelemetryLogger;
-import cn.zero.cloud.platform.utils.PlatFormDateUtil;
+import cn.zero.cloud.component.general.tool.utils.ZeloudDateUtil;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.apache.commons.lang3.StringUtils;
@@ -107,7 +107,7 @@ public class TelemetryLog {
     /**
      * 当前日志的生成时间
      */
-    private final String timestamp = PlatFormDateUtil.getCurrentTimeDefaultTimeZone();
+    private final String timestamp = ZeloudDateUtil.getCurrentTimeDefaultTimeZone();
 
     public void setParameter(String name, Object value) {
         if (value == null) {
