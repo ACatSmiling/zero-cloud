@@ -1,7 +1,8 @@
 package cn.zero.cloud.business.controller;
 
-import cn.zero.cloud.platform.Telemetry;
+import cn.zero.cloud.component.telemetry.Telemetry;
 import cn.zero.cloud.component.general.tool.utils.ZeloudJsonUtil;
+import cn.zero.cloud.component.telemetry.constants.TelemetryConstants;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,12 @@ import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.FeatureType.TEST_FEATURE;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.MetricType.TEST_METRIC;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ModuleType.TEST_API;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ObjectType.TEST_OBJECT;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.VerbType.SELECT;
 
 /**
  * @author Xisun Wang
@@ -30,7 +37,7 @@ public class CacheController {
         this.caffeineCacheManager = caffeineCacheManager;
     }
 
-    @Telemetry(moduleType = ModuleType.TEST_API, metricType = MetricType.TEST_METRIC, featureType = FeatureType.TEST_FEATURE, verbType = VerbType.SELECT, objectType = ObjectType.TEST_OBJECT)
+    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/caffeine/check", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public void checkCaffeineCache(@RequestParam String cacheName, @RequestParam String key) {
@@ -48,7 +55,7 @@ public class CacheController {
         }
     }
 
-    @Telemetry(moduleType = ModuleType.TEST_API, metricType = MetricType.TEST_METRIC, featureType = FeatureType.TEST_FEATURE, verbType = VerbType.SELECT, objectType = ObjectType.TEST_OBJECT)
+    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/caffeine/test", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Cacheable(value = "BOOKS", key = "#key", cacheManager = "caffeineCacheManager") // cacheManager指定使用非默认的缓存管理器
@@ -58,7 +65,7 @@ public class CacheController {
         return Book.builder().id("abcd").name("平凡的世界").author("路遥").timestamp(System.currentTimeMillis()).build();
     }
 
-    @Telemetry(moduleType = ModuleType.TEST_API, metricType = MetricType.TEST_METRIC, featureType = FeatureType.TEST_FEATURE, verbType = VerbType.SELECT, objectType = ObjectType.TEST_OBJECT)
+    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/redis/test", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     // @Cacheable注解通常用在方法上，表示该方法的结果是可缓存的。如果缓存中存在之前执行过的结果，那么方法不会再次执行，而是直接从缓存中返回结果
@@ -69,7 +76,7 @@ public class CacheController {
         return Book.builder().id("abcd").name("平凡的世界").author("路遥").timestamp(System.currentTimeMillis()).build();
     }
 
-    @Telemetry(moduleType = ModuleType.TEST_API, metricType = MetricType.TEST_METRIC, featureType = FeatureType.TEST_FEATURE, verbType = VerbType.SELECT, objectType = ObjectType.TEST_OBJECT)
+    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/redis/test/put", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     // @CachePut注解确保方法始终被执行，并且其结果放入缓存中，无论缓存中是否已经存在相同键的条目
@@ -80,7 +87,7 @@ public class CacheController {
         return Book.builder().id("abcd").name("平凡的世界").author("路遥").timestamp(System.currentTimeMillis()).build();
     }
 
-    @Telemetry(moduleType = ModuleType.TEST_API, metricType = MetricType.TEST_METRIC, featureType = FeatureType.TEST_FEATURE, verbType = VerbType.SELECT, objectType = ObjectType.TEST_OBJECT)
+    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/redis/test/evict", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     // @CacheEvict注解用于从缓存中移除条目。这通常用于删除操作，确保缓存不会返回过时的数据
@@ -92,7 +99,7 @@ public class CacheController {
         return Book.builder().id("abcd").name("平凡的世界").author("路遥").timestamp(System.currentTimeMillis()).build();
     }
 
-    @Telemetry(moduleType = ModuleType.TEST_API, metricType = MetricType.TEST_METRIC, featureType = FeatureType.TEST_FEATURE, verbType = VerbType.SELECT, objectType = ObjectType.TEST_OBJECT)
+    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/redis/test/combination", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     // 组合注解，假设key为abcd。慎用，例如@Cacheable和@CachePut一起，方法每次调用都会执行，失去了@Cacheable的作用

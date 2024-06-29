@@ -3,7 +3,7 @@ package cn.zero.cloud.business.controller;
 import cn.zero.cloud.business.common.constants.CustomizeStatusConstants;
 import cn.zero.cloud.component.exception.type.impl.PlatFormJsonException;
 import cn.zero.cloud.component.exception.type.impl.RestResponseException;
-import cn.zero.cloud.platform.Telemetry;
+import cn.zero.cloud.component.telemetry.Telemetry;
 import feign.FeignException;
 import feign.Request;
 import feign.Response;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
-import static cn.zero.cloud.platform.constants.TelemetryConstants.FeatureType.TEST_FEATURE;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.MetricType.TEST_METRIC;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.ModuleType.TEST_API;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.ObjectType.TEST_OBJECT;
-import static cn.zero.cloud.platform.constants.TelemetryConstants.VerbType.SELECT;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.FeatureType.TEST_FEATURE;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.MetricType.TEST_METRIC;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ModuleType.TEST_API;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ObjectType.TEST_OBJECT;
+import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.VerbType.SELECT;
 
 /**
  * @author Xisun Wang
