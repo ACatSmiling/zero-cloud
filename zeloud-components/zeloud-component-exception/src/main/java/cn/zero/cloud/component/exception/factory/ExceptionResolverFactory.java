@@ -7,7 +7,6 @@ import cn.zero.cloud.component.exception.resolver.impl.RestResponseExceptionReso
 import cn.zero.cloud.component.exception.type.impl.RestResponseException;
 import cn.zero.cloud.component.exception.resolver.impl.IllegalArgumentExceptionResolver;
 import cn.zero.cloud.component.exception.resolver.AbstractExceptionResolver;
-import cn.zero.cloud.platform.resolver.impl.*;
 
 import java.util.HashMap;
 import java.util.Map;
