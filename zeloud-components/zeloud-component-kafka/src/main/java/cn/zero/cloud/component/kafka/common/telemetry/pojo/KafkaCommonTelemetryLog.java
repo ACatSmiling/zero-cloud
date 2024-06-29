@@ -2,9 +2,9 @@ package cn.zero.cloud.component.kafka.common.telemetry.pojo;
 
 import cn.zero.cloud.component.kafka.common.telemetry.TelemetryConstants;
 import cn.zero.cloud.component.kafka.common.telemetry.TelemetryStatus;
-import cn.zero.cloud.platform.factory.TelemetryLoggerFactory;
-import cn.zero.cloud.platform.logger.TelemetryLogger;
-import cn.zero.cloud.platform.pojo.TelemetryLog;
+import cn.zero.cloud.component.telemetry.factory.TelemetryLoggerFactory;
+import cn.zero.cloud.component.telemetry.logger.TelemetryLogger;
+import cn.zero.cloud.component.telemetry.pojo.TelemetryLog;
 
 /**
  * @author Xisun Wang
