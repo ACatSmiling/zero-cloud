@@ -1,4 +1,4 @@
-package cn.zero.cloud.cache.config.properties;
+package cn.zero.cloud.component.cache.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

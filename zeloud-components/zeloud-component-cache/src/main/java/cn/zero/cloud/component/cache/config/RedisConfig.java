@@ -1,7 +1,7 @@
-package cn.zero.cloud.cache.config;
+package cn.zero.cloud.component.cache.config;
 
 import cn.hutool.core.util.ReflectUtil;
-import cn.zero.cloud.cache.config.properties.RedisProperties;
+import cn.zero.cloud.component.cache.config.properties.RedisProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;

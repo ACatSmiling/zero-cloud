@@ -1,6 +1,6 @@
-package cn.zero.cloud.cache.config;
+package cn.zero.cloud.component.cache.config;
 
-import cn.zero.cloud.cache.config.properties.CacheProperties;
+import cn.zero.cloud.component.cache.config.properties.CacheProperties;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
