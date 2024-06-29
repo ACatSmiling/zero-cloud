@@ -1,10 +1,7 @@
 package cn.zero.cloud.component.thread.config;
 
-import cn.zero.cloud.component.local.transmitter.impl.*;
 import cn.zero.cloud.component.thread.local.transmitter.impl.*;
 import cn.zero.cloud.component.thread.telemetry.ThreadPoolDecoratorTelemetryLog;
-import cn.zero.cloud.thread.local.transmitter.impl.*;
-import cn.zero.cloud.platform.local.transmitter.impl.*;
 import cn.zero.cloud.component.thread.pool.configurer.ThreadPoolConfigurationBean;
 import cn.zero.cloud.component.thread.pool.configurer.ThreadPoolConfigurer;
 import cn.zero.cloud.component.thread.local.transmitter.ThreadPoolThreadLocalTransmitter;
