@@ -1,6 +1,6 @@
 spring:
   application:
-    name: platform-self-study-redis-distributed-lock-1
+    name: zeloud-self-study-redis-distributed-lock-1
   profiles:
     default: dev
 

@@ -1,8 +1,8 @@
-package cn.zero.cloud.platform.service.impl;
+package cn.zero.cloud.distributed.service.impl;
 
 import cn.hutool.core.util.IdUtil;
-import cn.zero.cloud.platform.factory.RedisDistributedLockFactory;
-import cn.zero.cloud.platform.service.InventoryService;
+import cn.zero.cloud.distributed.factory.RedisDistributedLockFactory;
+import cn.zero.cloud.distributed.service.InventoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

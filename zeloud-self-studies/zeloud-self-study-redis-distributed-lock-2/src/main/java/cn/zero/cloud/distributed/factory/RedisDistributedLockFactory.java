@@ -1,6 +1,6 @@
-package cn.zero.cloud.platform.factory;
+package cn.zero.cloud.distributed.factory;
 
-import cn.zero.cloud.platform.lock.RedisDistributedLock;
+import cn.zero.cloud.distributed.lock.RedisDistributedLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;

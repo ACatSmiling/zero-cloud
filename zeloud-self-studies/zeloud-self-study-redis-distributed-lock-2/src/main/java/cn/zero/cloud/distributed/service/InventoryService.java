@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.service;
+package cn.zero.cloud.distributed.service;
 
 /**
  * @author Xisun Wang

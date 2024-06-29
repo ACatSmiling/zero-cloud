@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform;
+package cn.zero.cloud.distributed;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
