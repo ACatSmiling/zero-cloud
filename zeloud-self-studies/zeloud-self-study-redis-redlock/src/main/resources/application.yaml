@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: zeloud-self-study-redis-redlock
+  profiles:
+    default: dev
+
+server:
+  port: 6312
+  servlet:
+    context-path: /zeloud/redis/redlock
