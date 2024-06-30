@@ -1,18 +1,23 @@
-package cn.zero.cloud.platform.juc.lock;
+package cn.zero.cloud.juc.lock;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author XiSun
- * @version 1.0
- * @since 2024/6/7 23:34
+ * @author Xisun Wang
+ * @since 2024/6/8 10:39
  */
 @Slf4j
-public class LockDemo1 {
+public class LockDemo4 {
     private static class Phone {
         public synchronized void sendEmail() {
+            // sendEmail方法暂停3秒钟
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             log.info("thread {} send email", Thread.currentThread().getName());
         }
 
@@ -22,9 +27,10 @@ public class LockDemo1 {
     }
 
     public static void main(String[] args) {
-        Phone phone = new Phone();
+        Phone phone1 = new Phone();
+        Phone phone2 = new Phone();
 
-        new Thread(phone::sendEmail, "a").start();
+        new Thread(phone1::sendEmail, "a").start();
 
         // main线程暂停，主要是保证线程a先启动
         try {
@@ -33,6 +39,6 @@ public class LockDemo1 {
             throw new RuntimeException(e);
         }
 
-        new Thread(phone::sendSms, "b").start();
+        new Thread(phone2::sendSms, "b").start();
     }
 }

@@ -1,12 +1,11 @@
-package cn.zero.cloud.platform.juc.daemon;
+package cn.zero.cloud.juc.daemon;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/4 23:04
  */
 @Slf4j

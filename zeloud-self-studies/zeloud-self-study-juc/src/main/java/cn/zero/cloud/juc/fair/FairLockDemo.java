@@ -1,12 +1,11 @@
-package cn.zero.cloud.platform.juc.fair;
+package cn.zero.cloud.juc.fair;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/8 22:06
  */
 @Slf4j

@@ -1,34 +1,27 @@
-package cn.zero.cloud.platform.juc.interrupt;
+package cn.zero.cloud.juc.interrupt;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * @author XiSun
- * @version 1.0
- * @since 2024/6/13 23:56
+ * @author Xisun Wang
+ * @since 2024/6/13 23:46
  */
 @Slf4j
-public class InterruptByAtomicBooleanDemo {
-    private static final AtomicBoolean ATOMIC_BOOLEAN = new AtomicBoolean(false);
+public class InterruptByVolatileDemo {
+    // volatile表示的变量具有可见性
+    private static volatile boolean isStop = false;
 
     public static void main(String[] args) {
         new Thread(() -> {
             while (true) {
-                if (ATOMIC_BOOLEAN.get()) {
+                if (isStop) {
                     log.info("thread {} ends execution", Thread.currentThread().getName());
                     break;
                 }
                 // 不要使用日志输出
-                log.info("thread {} is running", Thread.currentThread().getName());
-                
-                try {
-                    TimeUnit.MILLISECONDS.sleep(2);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                // log.info("thread {} is running", Thread.currentThread().getName());
             }
         }, "t1").start();
 
@@ -39,7 +32,7 @@ public class InterruptByAtomicBooleanDemo {
         }
 
         new Thread(() -> {
-            ATOMIC_BOOLEAN.set(true);
+            isStop = true;
             log.info("thread {} ends execution", Thread.currentThread().getName());
         }, "t2").start();
     }

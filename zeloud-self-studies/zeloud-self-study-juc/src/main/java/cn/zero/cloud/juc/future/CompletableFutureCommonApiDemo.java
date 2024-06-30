@@ -1,12 +1,11 @@
-package cn.zero.cloud.platform.juc.future;
+package cn.zero.cloud.juc.future;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.*;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/7 23:13
  */
 @Slf4j

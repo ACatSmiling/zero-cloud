@@ -1,12 +1,11 @@
-package cn.zero.cloud.platform.juc.lock;
+package cn.zero.cloud.juc.lock;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/7 23:36
  */
 @Slf4j

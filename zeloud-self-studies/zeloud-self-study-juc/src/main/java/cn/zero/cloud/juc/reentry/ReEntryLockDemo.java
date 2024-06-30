@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.juc.reentry;
+package cn.zero.cloud.juc.reentry;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,8 +7,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author XiSun
- * @version 1.0
+ * @author Xisun Wang
  * @since 2024/6/8 22:42
  */
 @Slf4j
