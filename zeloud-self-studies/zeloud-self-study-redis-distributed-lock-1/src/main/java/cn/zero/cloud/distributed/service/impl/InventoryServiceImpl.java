@@ -4,6 +4,8 @@ import cn.hutool.core.util.IdUtil;
 import cn.zero.cloud.distributed.factory.RedisDistributedLockFactory;
 import cn.zero.cloud.distributed.service.InventoryService;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.Redisson;
+import org.redisson.api.RLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -29,11 +31,59 @@ public class InventoryServiceImpl implements InventoryService {
 
     private final RedisDistributedLockFactory redisDistributedLockFactory;
 
+    private final Redisson redisson;
+
 
     @Autowired
-    public InventoryServiceImpl(RedisTemplate<String, Object> redisTemplate, RedisDistributedLockFactory redisDistributedLockFactory) {
+    public InventoryServiceImpl(RedisTemplate<String, Object> redisTemplate, RedisDistributedLockFactory redisDistributedLockFactory, Redisson redisson) {
         this.redisTemplate = redisTemplate;
         this.redisDistributedLockFactory = redisDistributedLockFactory;
+        this.redisson = redisson;
+    }
+
+    // 改进版本八：Redisson版本的分布式锁
+    @Override
+    public String saleByRedisson() {
+        String lockName = "RedisDistributedLock";
+        // 注意，对于可重入锁，订单号，也就是lockValue，需要保持一致
+        String lockValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
+
+        RLock lock = redisson.getLock(lockName);
+
+        lock.lock();
+        String retMessage;
+        try {
+            // 1 查询库存信息
+            String result = (String) redisTemplate.opsForValue().get("inventory001");
+            // 2 判断库存是否足够
+            int inventoryNumber = result == null ? 0 : Integer.parseInt(result);
+            // 3 扣减库存
+            if (inventoryNumber > 0) {
+                redisTemplate.opsForValue().set("inventory001", String.valueOf(--inventoryNumber));
+                retMessage = "成功卖出一个商品，库存剩余：" + inventoryNumber;
+            } else {
+                retMessage = "商品卖完了";
+            }
+
+            testReEnterByRedisson(lockName);
+        } finally {
+            // 防止误删其他线程持有的锁
+            if (lock.isLocked() && lock.isHeldByCurrentThread()) {
+                lock.unlock();
+            }
+        }
+        return retMessage + "\t" + "订单号：" + lockValue + "\t" + "服务端口号：" + port;
+    }
+
+    private void testReEnterByRedisson(String lockName) {
+        RLock lock = redisson.getLock(lockName);
+        lock.lock();
+        try {
+            // 通过debug代码，然后查看Redis中RedisDistributedLock对应的值，可以直观的验证可重入性
+            log.info("################测试Redisson可重入锁####################################");
+        } finally {
+            lock.unlock();
+        }
     }
 
     // 改进版本七：实现锁的自动续期，后台自定义扫描程序，如果规定时间内没有完成业务逻辑，会调用加钟自动续期的脚本
@@ -60,7 +110,7 @@ public class InventoryServiceImpl implements InventoryService {
                 retMessage = "商品卖完了";
             }
 
-            // 暂停120s，测试自动续期
+            // 暂停120s，测试自动续期，此时，不要使用nginx，可能会出现504网关超时
             try {
                 TimeUnit.SECONDS.sleep(120);
             } catch (InterruptedException e) {

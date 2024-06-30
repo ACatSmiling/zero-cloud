@@ -6,4 +6,6 @@ package cn.zero.cloud.distributed.service;
  */
 public interface InventoryService {
     String sale();
+
+    String saleByRedisson();
 }
