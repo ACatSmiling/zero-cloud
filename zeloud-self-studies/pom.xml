@@ -15,5 +15,6 @@
         <module>zeloud-self-study-redis</module>
         <module>zeloud-self-study-redis-distributed-lock-1</module>
         <module>zeloud-self-study-redis-distributed-lock-2</module>
+        <module>zeloud-self-study-redis-redlock</module>
     </modules>
 </project>
