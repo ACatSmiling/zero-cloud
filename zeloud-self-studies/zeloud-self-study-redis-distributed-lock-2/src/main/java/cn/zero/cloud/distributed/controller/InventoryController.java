@@ -28,4 +28,10 @@ public class InventoryController {
     public String sale() {
         return inventoryService.sale();
     }
+
+    @GetMapping(value = "/saleByRedisson", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public String saleByRedisson() {
+        return inventoryService.saleByRedisson();
+    }
 }

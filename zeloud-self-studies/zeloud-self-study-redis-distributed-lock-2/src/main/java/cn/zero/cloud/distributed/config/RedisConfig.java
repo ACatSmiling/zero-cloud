@@ -3,6 +3,8 @@ package cn.zero.cloud.distributed.config;
 import cn.hutool.core.util.ReflectUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.redisson.Redisson;
+import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -41,5 +43,20 @@ public class RedisConfig {
         ObjectMapper objectMapper = (ObjectMapper) ReflectUtil.getFieldValue(json, "mapper");
         objectMapper.registerModules(new JavaTimeModule());
         return json;
+    }
+
+    /**
+     * 单Redis节点模式
+     *
+     * @return Redisson
+     */
+    @Bean
+    public Redisson redisson() {
+        Config config = new Config();
+        config.useSingleServer()
+                .setAddress("redis://192.168.1.20:6379")
+                .setDatabase(1)
+                .setPassword("123456");
+        return (Redisson) Redisson.create(config);
     }
 }
