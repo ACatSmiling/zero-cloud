@@ -1,2 +1,2 @@
-cn.zero.cloud.platform.config.CacheConfig
-cn.zero.cloud.platform.config.RedisConfig
+cn.zero.cloud.component.cache.config.ZeloudRedisAutoConfiguration
+cn.zero.cloud.component.cache.config.ZeloudCacheAutoConfiguration
