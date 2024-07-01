@@ -4,6 +4,7 @@ import cn.hutool.core.util.ReflectUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,12 +52,12 @@ public class RedisConfig {
      * @return Redisson
      */
     @Bean
-    public Redisson redisson() {
+    public RedissonClient redisson() {
         Config config = new Config();
         config.useSingleServer()
                 .setAddress("redis://192.168.1.20:6379")
                 .setDatabase(1)
                 .setPassword("123456");
-        return (Redisson) Redisson.create(config);
+        return Redisson.create(config);
     }
 }
