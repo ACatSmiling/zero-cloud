@@ -1,8 +1,5 @@
 package cn.zero.cloud.business.controller;
 
-import cn.zero.cloud.component.kafka.common.pojo.healthcheck.HealthCheckSummary;
-import cn.zero.cloud.component.kafka.common.pojo.healthcheck.HealthCheckType;
-import cn.zero.cloud.component.kafka.consumer.healthcheck.KafkaConsumerHealthCheckContainerService;
 import cn.zero.cloud.component.telemetry.Telemetry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +21,7 @@ import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.Obj
 @RestController
 @RequestMapping(value = "/kafka/consumer")
 public class KafkaConsumerController {
-    private final KafkaConsumerHealthCheckContainerService kafkaConsumerHealthCheckContainerService;
+    /*private final KafkaConsumerHealthCheckContainerService kafkaConsumerHealthCheckContainerService;
 
     @Autowired
     public KafkaConsumerController(KafkaConsumerHealthCheckContainerService kafkaConsumerHealthCheckContainerService) {
@@ -50,5 +47,5 @@ public class KafkaConsumerController {
     @ResponseStatus(HttpStatus.OK)
     public HealthCheckSummary readinessHealthCheck() {
         return kafkaConsumerHealthCheckContainerService.checkDownstreamComponents(HealthCheckType.READINESS_CHECK);
-    }
+    }*/
 }

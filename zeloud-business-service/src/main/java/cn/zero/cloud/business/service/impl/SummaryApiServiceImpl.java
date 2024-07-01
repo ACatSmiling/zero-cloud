@@ -1,7 +1,5 @@
 package cn.zero.cloud.business.service.impl;
 
-import cn.zero.cloud.component.kafka.common.message.internal.summary.SummaryMessage;
-import cn.zero.cloud.component.kafka.producer.business.event.impl.SummaryGeneratedEvent;
 import cn.zero.cloud.business.service.SummaryApiService;
 import cn.zero.cloud.component.general.tool.utils.ZeloudJsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -27,10 +25,10 @@ public class SummaryApiServiceImpl implements SummaryApiService {
 
     @Override
     public void sendSummaryMessage() {
-        SummaryMessage message = new SummaryMessage();
+        /*SummaryMessage message = new SummaryMessage();
         message.setSummaryUUID(UUID.randomUUID().toString());
         SummaryGeneratedEvent summaryGeneratedEvent = new SummaryGeneratedEvent(this, message);
         log.info("message: {}", ZeloudJsonUtil.serializeToJson(message));
-        context.publishEvent(summaryGeneratedEvent);
+        context.publishEvent(summaryGeneratedEvent);*/
     }
 }
