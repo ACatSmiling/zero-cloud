@@ -1,9 +1,8 @@
 package cn.zero.cloud.business.controller;
 
 import cn.zero.cloud.business.common.entity.dto.UpdateWorldDTO;
-import cn.zero.cloud.component.telemetry.Telemetry;
-import cn.zero.cloud.component.telemetry.factory.TelemetryManualLoggerFactory;
-import cn.zero.cloud.component.telemetry.logger.manual.TelemetryCommonTypeLoggerImpl;
+import cn.zero.cloud.component.telemetry.core.factory.TelemetryManualLoggerFactory;
+import cn.zero.cloud.component.telemetry.core.logger.manual.TelemetryManualLoggerImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,14 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.TimeUnit;
 
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.FeatureType.TEST_FEATURE;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.MetricType.TEST_METRIC;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ModuleType.TEST_API;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ObjectType.COMMON_OBJECT;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ObjectType.TEST_OBJECT;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.VerbType.SELECT;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.VerbType.UPDATE;
-
 /**
  * @author Xisun Wang
  * @since 2024/3/6 12:19
@@ -27,14 +18,12 @@ import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.Ver
 @RestController
 @RequestMapping(value = "/world")
 public class HelloController {
-    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String helloWorld() {
         return "hello, world!";
     }
 
-    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = UPDATE, objectType = TEST_OBJECT, objectID = "#updateWorldDTO.worldSerialNumber", parameters = {"#updateWorldDTO.worldName", "#updateWorldDTO.worldVision"})
     @PostMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public String updateWorld(@RequestBody UpdateWorldDTO updateWorldDTO) {
@@ -42,12 +31,15 @@ public class HelloController {
         Assert.notNull(updateWorldDTO.getWorldName(), "World name is required.");
         Assert.notNull(updateWorldDTO.getWorldVision(), "World vision is required.");
 
-        TelemetryCommonTypeLoggerImpl telemetryCommonTypeLoggerImpl = TelemetryManualLoggerFactory.getTelemetryCommonTypeLogger(COMMON_OBJECT, "1122").forUpdate();
+        TelemetryManualLoggerImpl telemetryManualLoggerImpl = TelemetryManualLoggerFactory
+                .getTelemetryManualLogger("COMMON_OBJECT", "1122", "s")
+                .forUpdate();
         try {
             TimeUnit.SECONDS.sleep(3);
             System.out.println(1 / 0);
         } catch (Exception e) {
-            telemetryCommonTypeLoggerImpl.createFailure(e.getMessage());
+            telemetryManualLoggerImpl.setItem("a", "a");
+            telemetryManualLoggerImpl.createFailure(e.getMessage());
         }
 
         return StringUtils.join(updateWorldDTO.getWorldSerialNumber(), "-", updateWorldDTO.getWorldName(), ": ", updateWorldDTO.getWorldVision());

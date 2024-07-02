@@ -3,3 +3,10 @@ spring:
     import:
       - "classpath:conf/cache.properties"
       - "classpath:conf/redis.properties"
+      - "classpath:conf/thread.properties"
+
+# 是否启用Telemetry监控日志，默认启用
+zero:
+  cloud:
+    telemetry:
+      enable: true

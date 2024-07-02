@@ -3,7 +3,6 @@ package cn.zero.cloud.business.controller;
 import cn.zero.cloud.business.common.constants.CustomizeStatusConstants;
 import cn.zero.cloud.component.exception.type.impl.PlatFormJsonException;
 import cn.zero.cloud.component.exception.type.impl.RestResponseException;
-import cn.zero.cloud.component.telemetry.Telemetry;
 import feign.FeignException;
 import feign.Request;
 import feign.Response;
@@ -13,12 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.FeatureType.TEST_FEATURE;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.MetricType.TEST_METRIC;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ModuleType.TEST_API;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ObjectType.TEST_OBJECT;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.VerbType.SELECT;
-
 /**
  * @author Xisun Wang
  * @since 2024/3/26 17:19
@@ -26,7 +19,6 @@ import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.Ver
 @RestController
 @RequestMapping(value = "/exception")
 public class ExceptionController {
-    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/normal", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String normalException(@RequestParam(name = "code", required = false, defaultValue = "2") int code) throws Exception {
@@ -36,7 +28,6 @@ public class ExceptionController {
         return "hello, world!";
     }
 
-    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/rest", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String restException(@RequestParam(name = "code", required = false, defaultValue = "2") int code) {
@@ -52,7 +43,6 @@ public class ExceptionController {
         return "hello, world!";
     }
 
-    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/feign", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String feignException(@RequestParam(name = "code", required = false, defaultValue = "2") int code) {
@@ -74,7 +64,6 @@ public class ExceptionController {
         return "hello, world!";
     }
 
-    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/illegal", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String illegalException(@RequestParam(name = "code", required = false, defaultValue = "2") int code) {
@@ -84,7 +73,6 @@ public class ExceptionController {
         return "hello, world!";
     }
 
-    @Telemetry(moduleType = TEST_API, metricType = TEST_METRIC, featureType = TEST_FEATURE, verbType = SELECT, objectType = TEST_OBJECT)
     @GetMapping(value = "/platform", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String platFormJsonException(@RequestParam(name = "code", required = false, defaultValue = "2") int code) {
