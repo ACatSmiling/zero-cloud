@@ -1,11 +1,12 @@
 package cn.zero.cloud.component.thread.config;
 
-import cn.zero.cloud.component.thread.local.transmitter.impl.*;
-import cn.zero.cloud.component.thread.telemetry.ThreadPoolDecoratorTelemetryLog;
-import cn.zero.cloud.component.thread.pool.configurer.ThreadPoolConfigurationBean;
-import cn.zero.cloud.component.thread.pool.configurer.ThreadPoolConfigurer;
-import cn.zero.cloud.component.thread.local.transmitter.ThreadPoolThreadLocalTransmitter;
+import cn.zero.cloud.component.thread.core.local.transmitter.impl.*;
+import cn.zero.cloud.component.thread.core.telemetry.ThreadPoolDecoratorTelemetryLog;
+import cn.zero.cloud.component.thread.core.pool.configurer.ThreadPoolConfigurationBean;
+import cn.zero.cloud.component.thread.core.pool.configurer.ThreadPoolConfigurer;
+import cn.zero.cloud.component.thread.core.local.transmitter.ThreadPoolThreadLocalTransmitter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,26 +17,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 线程池Bean初始化配置
+ * 线程池 Bean 初始化配置
  *
  * @author Xisun Wang
  * @since 2024/4/12 17:17
  */
-@Configuration
+@AutoConfiguration
 public class ThreadPoolBeanInitializerConfig {
     /**
-     * 根据platform.task.collector.spec配置，向容器中注入需要的task收集器
+     * 根据 zero.cloud.thread.task.collector.spec 配置，向容器中注入需要的 task 收集器
      *
-     * @return task收集器集合
+     * @return task 收集器集合
      */
     @Bean
-    @ConfigurationProperties(prefix = "platform.task.collector.spec")
+    @ConfigurationProperties(prefix = "zero.cloud.thread.task.collector.spec")
     public Map<String, String> taskCollectorSpec() {
         return new HashMap<>();
     }
 
     /**
-     * 向容器中注入一个ThreadPoolConfig对象
+     * 向容器中注入一个 ThreadPoolConfig 对象
      *
      * @param configurer ThreadPoolConfigurer
      * @return ThreadPoolConfig
@@ -52,7 +53,7 @@ public class ThreadPoolBeanInitializerConfig {
     }
 
     /**
-     * 初始化默认的ThreadPool ThreadLocal Transmitter
+     * 初始化默认的 ThreadPool ThreadLocal Transmitter
      *
      * @return List<ThreadPoolThreadLocalTransmitter>
      */
