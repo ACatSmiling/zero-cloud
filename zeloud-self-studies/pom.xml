@@ -17,5 +17,6 @@
         <module>zeloud-self-study-redis-distributed-lock-2</module>
         <module>zeloud-self-study-redis-redlock</module>
         <module>zeloud-self-study-juc</module>
+        <module>zeloud-self-study-sa-token</module>
     </modules>
 </project>
