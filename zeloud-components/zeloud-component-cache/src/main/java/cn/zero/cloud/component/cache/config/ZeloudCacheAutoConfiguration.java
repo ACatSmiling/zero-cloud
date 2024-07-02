@@ -6,6 +6,7 @@ import cn.zero.cloud.component.cache.core.CustomTtlRedisCacheManager;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.boot.autoconfigure.cache.CacheType;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -35,7 +36,7 @@ import static cn.zero.cloud.component.cache.config.ZeloudRedisAutoConfiguration.
  * @author Xisun Wang
  * @since 6/14/2024 09:13
  */
-@Configuration
+@AutoConfiguration
 @EnableConfigurationProperties({CacheProperties.class, ZeloudCacheProperties.class})
 @EnableCaching // 开启缓存支持
 public class ZeloudCacheAutoConfiguration {
