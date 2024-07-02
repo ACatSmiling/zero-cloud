@@ -2,14 +2,8 @@ package cn.zero.cloud.component.kafka.consumer.business.service;
 
 import cn.zero.cloud.component.kafka.common.message.internal.recording.SuiteRecordingMessage;
 import cn.zero.cloud.component.kafka.common.pojo.result.impl.ConsumeResult;
-import cn.zero.cloud.component.telemetry.Telemetry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.FeatureType.KAFKA_FEATURE;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.MetricType.KAFKA_METRIC;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ModuleType.KAFKA_API;
-import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.ObjectType.KAFKA_OBJECT;
 
 /**
  * message业务消费
@@ -20,7 +14,6 @@ import static cn.zero.cloud.component.telemetry.constants.TelemetryConstants.Obj
 @Slf4j
 @Service
 public class SuiteRecordingMessageService {
-    @Telemetry(moduleType = KAFKA_API, metricType = KAFKA_METRIC, featureType = KAFKA_FEATURE, objectType = KAFKA_OBJECT, parameters = {"#message.siteUUID", "#message.meetingInstanceID", "#message.recordingUUID"})
     public ConsumeResult consume(SuiteRecordingMessage message) {
         ConsumeResult result = ConsumeResult.createConsumeResult(message);
         try {

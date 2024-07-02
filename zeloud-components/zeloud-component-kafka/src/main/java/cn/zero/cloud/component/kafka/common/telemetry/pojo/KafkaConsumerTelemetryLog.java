@@ -25,12 +25,12 @@ public class KafkaConsumerTelemetryLog extends KafkaCommonTelemetryLog {
 
     protected KafkaConsumerTelemetryLog() {
         super();
-        this.setVerbType(TelemetryConstants.VERB_CONSUME);
+        this.setVerb(TelemetryConstants.VERB_CONSUME);
     }
 
     public KafkaConsumerTelemetryLog(String featureName) {
         this();
-        this.setFeatureType(featureName);
+        this.setFeatureName(featureName);
     }
 
     public long getPartition() {

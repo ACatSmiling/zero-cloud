@@ -17,12 +17,12 @@ public class KafkaProducerTelemetryLog extends KafkaCommonTelemetryLog {
 
     public KafkaProducerTelemetryLog() {
         super();
-        this.setVerbType(TelemetryConstants.VERB_PRODUCE);
+        this.setVerb(TelemetryConstants.VERB_PRODUCE);
     }
 
     public KafkaProducerTelemetryLog(String featureName) {
         this();
-        this.setFeatureType(featureName);
+        this.setFeatureName(featureName);
     }
 
     public String getUrl() {

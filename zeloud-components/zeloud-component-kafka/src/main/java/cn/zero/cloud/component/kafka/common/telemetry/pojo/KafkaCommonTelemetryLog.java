@@ -2,9 +2,9 @@ package cn.zero.cloud.component.kafka.common.telemetry.pojo;
 
 import cn.zero.cloud.component.kafka.common.telemetry.TelemetryConstants;
 import cn.zero.cloud.component.kafka.common.telemetry.TelemetryStatus;
-import cn.zero.cloud.component.telemetry.factory.TelemetryLoggerFactory;
-import cn.zero.cloud.component.telemetry.logger.TelemetryLogger;
-import cn.zero.cloud.component.telemetry.pojo.TelemetryLog;
+import cn.zero.cloud.component.telemetry.core.factory.TelemetryLoggerFactory;
+import cn.zero.cloud.component.telemetry.core.logger.TelemetryLogger;
+import cn.zero.cloud.component.telemetry.core.pojo.TelemetryLog;
 
 /**
  * @author Xisun Wang
@@ -38,7 +38,7 @@ public class KafkaCommonTelemetryLog extends TelemetryLog {
     private long costTime;
 
     protected KafkaCommonTelemetryLog() {
-        this.setMetricType(TelemetryConstants.METRIC_NAME);
+        this.setMetricName(TelemetryConstants.METRIC_NAME);
     }
 
     public void logInitiateStatus() {
