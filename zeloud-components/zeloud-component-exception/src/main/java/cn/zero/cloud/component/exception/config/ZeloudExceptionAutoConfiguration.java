@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
  * @since 7/3/2024 16:53
  */
 @AutoConfiguration
-@ControllerAdvice
 public class ZeloudExceptionAutoConfiguration {
     @Bean
     public GlobalExceptionHandler globalExceptionHandler() {

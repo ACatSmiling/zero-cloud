@@ -12,7 +12,6 @@ import java.util.Map;
  * @author Xisun Wang
  * @since 2024/3/26 16:14
  */
-@Component("illegalStateExceptionResolver")
 public class IllegalStateExceptionResolver extends AbstractExceptionResolver {
     @Override
     protected String getExceptionResolverName() {

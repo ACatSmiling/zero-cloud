@@ -13,7 +13,6 @@ import java.util.Map;
  * @author Xisun Wang
  * @since 2024/3/26 16:05
  */
-@Component("restResponseExceptionResolver")
 public class RestResponseExceptionResolver extends AbstractExceptionResolver {
     private static final String CUSTOMIZE_STATUS = "customizeStatus";
 
