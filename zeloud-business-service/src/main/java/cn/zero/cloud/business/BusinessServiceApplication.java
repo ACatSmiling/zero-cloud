@@ -13,7 +13,7 @@ public class BusinessServiceApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(BusinessServiceApplication.class, args);
 
-        String beanName = "SendNotificationExecutor";
+        String beanName = "NOTIFY_THREAD_POOL_TASK_EXECUTOR";
         if (applicationContext.containsBean(beanName)) {
             Object myBean = applicationContext.getBean(beanName);
             // 现在你可以对 myBean 做任何你需要的操作

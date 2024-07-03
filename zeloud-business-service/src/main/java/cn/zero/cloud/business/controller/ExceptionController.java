@@ -1,8 +1,8 @@
 package cn.zero.cloud.business.controller;
 
 import cn.zero.cloud.business.common.constants.CustomizeStatusConstants;
-import cn.zero.cloud.component.exception.type.impl.PlatFormJsonException;
-import cn.zero.cloud.component.exception.type.impl.RestResponseException;
+import cn.zero.cloud.component.exception.core.type.impl.ZeloudJsonException;
+import cn.zero.cloud.component.exception.core.type.impl.ZeloudRestResponseException;
 import feign.FeignException;
 import feign.Request;
 import feign.Response;
@@ -33,7 +33,7 @@ public class ExceptionController {
     public String restException(@RequestParam(name = "code", required = false, defaultValue = "2") int code) {
         if (code == 1) {
             // RestResponseException exception = new RestResponseException(HttpStatus.CONFLICT.value(), "1122");
-            RestResponseException exception = new RestResponseException(CustomizeStatusConstants.ABC.value(), "1122");
+            ZeloudRestResponseException exception = new ZeloudRestResponseException(CustomizeStatusConstants.ABC.value(), "1122");
             exception.addAdditionalMessage("bbcc");
             exception.addAdditionalMessage("eeff");
             exception.addAdditionalMessage("9988");
@@ -78,7 +78,7 @@ public class ExceptionController {
     public String platFormJsonException(@RequestParam(name = "code", required = false, defaultValue = "2") int code) {
         if (code == 1) {
             // PlatFormJsonException exception = new PlatFormJsonException(HttpStatus.NO_CONTENT.value(), "adsad");
-            PlatFormJsonException exception = new PlatFormJsonException(CustomizeStatusConstants.ABC.value(), "adsad");
+            ZeloudJsonException exception = new ZeloudJsonException(CustomizeStatusConstants.ABC.value(), "adsad");
             exception.addAdditionalMessage("json1");
             exception.addAdditionalMessage("json2");
             exception.addAdditionalMessage("json3");
