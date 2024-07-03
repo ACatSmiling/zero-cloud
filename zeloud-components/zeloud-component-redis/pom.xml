@@ -13,8 +13,8 @@
     <packaging>jar</packaging>
 
     <version>1.0.0-SNAPSHOT</version>
-    <name>zeloud-self-study-redis</name>
-    <description>zeloud-self-study-redis</description>
+    <name>zeloud-component-redis</name>
+    <description>zeloud-component-redis</description>
 
     <properties>
         <java.version>17</java.version>
