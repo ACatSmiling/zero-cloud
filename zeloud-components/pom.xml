@@ -12,13 +12,13 @@
     <artifactId>zeloud-components</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>zeloud-component-async</module>
+        <module>zeloud-component-cache</module>
         <module>zeloud-component-exception</module>
         <module>zeloud-component-general-tool</module>
-        <module>zeloud-component-telemetry</module>
-        <module>zeloud-component-thread</module>
-        <module>zeloud-component-redis</module>
-        <module>zeloud-component-cache</module>
         <module>zeloud-component-kafka</module>
+        <module>zeloud-component-redis</module>
+        <module>zeloud-component-telemetry</module>
     </modules>
 
     <properties>
