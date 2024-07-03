@@ -1,6 +1,6 @@
-package cn.zero.cloud.component.exception.resolver;
+package cn.zero.cloud.component.exception.core.resolver;
 
-import cn.zero.cloud.component.exception.type.impl.PlatFormJsonException;
+import cn.zero.cloud.component.exception.core.type.impl.ZeloudJsonException;
 import cn.zero.cloud.component.general.tool.utils.ZeloudDateUtil;
 import cn.zero.cloud.component.general.tool.utils.ZeloudJsonUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -52,7 +52,7 @@ public abstract class AbstractExceptionResolver {
      * @return 响应内容
      */
     protected String getResponseJsonResult(Exception e) {
-        PlatFormJsonException ex = (PlatFormJsonException) e;
+        ZeloudJsonException ex = (ZeloudJsonException) e;
         Map<String, Object> body = new LinkedHashMap<>();
         body.put(RESPONSE_STATUS, ex.getStatus());
         body.put(ADDITIONAL_MESSAGES, ex.getAdditionalMessages());

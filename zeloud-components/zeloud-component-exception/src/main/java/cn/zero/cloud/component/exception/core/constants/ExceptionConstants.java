@@ -1,4 +1,4 @@
-package cn.zero.cloud.component.exception.constants;
+package cn.zero.cloud.component.exception.core.constants;
 
 /**
  * @author Xisun Wang

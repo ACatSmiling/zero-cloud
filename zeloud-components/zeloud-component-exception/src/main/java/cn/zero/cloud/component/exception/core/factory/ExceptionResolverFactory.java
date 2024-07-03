@@ -1,12 +1,12 @@
-package cn.zero.cloud.component.exception.factory;
+package cn.zero.cloud.component.exception.core.factory;
 
-import cn.zero.cloud.component.exception.constants.ExceptionConstants;
-import cn.zero.cloud.component.exception.resolver.impl.GlobalExceptionResolver;
-import cn.zero.cloud.component.exception.resolver.impl.IllegalStateExceptionResolver;
-import cn.zero.cloud.component.exception.resolver.impl.RestResponseExceptionResolver;
-import cn.zero.cloud.component.exception.type.impl.RestResponseException;
-import cn.zero.cloud.component.exception.resolver.impl.IllegalArgumentExceptionResolver;
-import cn.zero.cloud.component.exception.resolver.AbstractExceptionResolver;
+import cn.zero.cloud.component.exception.core.constants.ExceptionConstants;
+import cn.zero.cloud.component.exception.core.resolver.impl.GlobalExceptionResolver;
+import cn.zero.cloud.component.exception.core.resolver.impl.IllegalStateExceptionResolver;
+import cn.zero.cloud.component.exception.core.resolver.impl.RestResponseExceptionResolver;
+import cn.zero.cloud.component.exception.core.type.impl.ZeloudRestResponseException;
+import cn.zero.cloud.component.exception.core.resolver.impl.IllegalArgumentExceptionResolver;
+import cn.zero.cloud.component.exception.core.resolver.AbstractExceptionResolver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ public final class ExceptionResolverFactory {
     private static final Map<Class<? extends Exception>, Supplier<AbstractExceptionResolver>> EXCEPTION_RESOLVERS = new HashMap<>();
 
     static {
-        EXCEPTION_RESOLVERS.put(RestResponseException.class, RestResponseExceptionResolver::new);
+        EXCEPTION_RESOLVERS.put(ZeloudRestResponseException.class, RestResponseExceptionResolver::new);
         EXCEPTION_RESOLVERS.put(IllegalArgumentException.class, IllegalArgumentExceptionResolver::new);
         EXCEPTION_RESOLVERS.put(IllegalStateException.class, IllegalStateExceptionResolver::new);
     }

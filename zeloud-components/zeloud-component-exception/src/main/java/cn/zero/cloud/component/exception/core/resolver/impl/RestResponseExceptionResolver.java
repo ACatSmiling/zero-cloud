@@ -1,7 +1,7 @@
-package cn.zero.cloud.component.exception.resolver.impl;
+package cn.zero.cloud.component.exception.core.resolver.impl;
 
-import cn.zero.cloud.component.exception.type.impl.RestResponseException;
-import cn.zero.cloud.component.exception.resolver.AbstractExceptionResolver;
+import cn.zero.cloud.component.exception.core.resolver.AbstractExceptionResolver;
+import cn.zero.cloud.component.exception.core.type.impl.ZeloudRestResponseException;
 import cn.zero.cloud.component.general.tool.utils.ZeloudDateUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class RestResponseExceptionResolver extends AbstractExceptionResolver {
 
     @Override
     public ResponseEntity<Object> getResponseEntity(Exception e) {
-        RestResponseException ex = (RestResponseException) e;
+        ZeloudRestResponseException ex = (ZeloudRestResponseException) e;
         Map<String, Object> body = generateMessageBody(ex.getMessage());
         Map<String, String> additionalMessages = ex.getAdditionalMessages();
         int customizeStatus = ex.getStatus();

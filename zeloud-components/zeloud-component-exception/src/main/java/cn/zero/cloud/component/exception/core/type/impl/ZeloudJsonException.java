@@ -1,6 +1,6 @@
-package cn.zero.cloud.component.exception.type.impl;
+package cn.zero.cloud.component.exception.core.type.impl;
 
-import cn.zero.cloud.component.exception.type.CommonException;
+import cn.zero.cloud.component.exception.core.type.CommonException;
 
 import java.io.Serial;
 import java.util.LinkedHashMap;
@@ -12,7 +12,7 @@ import java.util.Map;
  * @author Xisun Wang
  * @since 2024/3/26 17:03
  */
-public class PlatFormJsonException extends RuntimeException implements CommonException {
+public class ZeloudJsonException extends RuntimeException implements CommonException {
     @Serial
     private static final long serialVersionUID = -7389426743866292100L;
 
@@ -22,12 +22,12 @@ public class PlatFormJsonException extends RuntimeException implements CommonExc
 
     private Map<String, String> additionalMessages;
 
-    public PlatFormJsonException(int status, String message) {
+    public ZeloudJsonException(int status, String message) {
         super(message);
         this.status = status;
     }
 
-    public PlatFormJsonException(int status, String message, Throwable cause) {
+    public ZeloudJsonException(int status, String message, Throwable cause) {
         super(message, cause);
         this.status = status;
     }

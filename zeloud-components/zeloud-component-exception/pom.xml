@@ -30,17 +30,14 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
-        <!-- commons lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
-        <!-- feign core原生依赖 -->
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-core</artifactId>
-            <version>13.1</version>
         </dependency>
 
         <!-- Spring Boot Web Starter -->
