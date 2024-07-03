@@ -16,9 +16,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>zeloud-basic</module>
-        <module>zeloud-self-studies</module>
-        <module>zeloud-components</module>
         <module>zeloud-business-service</module>
+        <module>zeloud-components</module>
+        <module>zeloud-self-studies</module>
     </modules>
 
     <properties>
@@ -81,6 +81,13 @@
                 <version>5.8.28</version>
             </dependency>
 
+            <!-- TTL，解决在使用线程池时，线程局部变量ThreadLocal可能出现的问题 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>2.14.5</version>
+            </dependency>
+
             <!-- sa-token -->
             <dependency>
                 <groupId>cn.dev33</groupId>
@@ -121,6 +128,13 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>3.31.0</version>
+            </dependency>
+
+            <!-- feign core原生依赖 -->
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-core</artifactId>
+                <version>13.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
