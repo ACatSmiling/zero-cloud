@@ -15,7 +15,6 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>zeloud-basic</module>
         <module>zeloud-business-service</module>
         <module>zeloud-components</module>
         <module>zeloud-self-studies</module>
