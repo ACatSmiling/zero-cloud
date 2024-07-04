@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: zeloud-self-study-spring-security
+  profiles:
+    default: dev
+
+server:
+  port: 4213
+  servlet:
+    context-path: /zeloud/security
