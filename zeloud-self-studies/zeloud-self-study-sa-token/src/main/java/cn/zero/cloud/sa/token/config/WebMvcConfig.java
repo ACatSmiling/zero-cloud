@@ -1,6 +1,6 @@
-package cn.zero.cloud.platform.config;
+package cn.zero.cloud.sa.token.config;
 
-import cn.zero.cloud.platform.interceptor.RequestInterceptor;
+import cn.zero.cloud.sa.token.interceptor.RequestInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

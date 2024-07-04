@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.interceptor;
+package cn.zero.cloud.sa.token.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public class RequestInterceptor implements HandlerInterceptor {
 
     private static final String VALID_HEADER_TOKEN = "ValidHeaderToken";
 
-    private static final List<String> VALID_HEADER_IDENTIFIES = List.of("PLATFORM_BASIC_SERVER");
+    private static final List<String> VALID_HEADER_IDENTIFIES = List.of("ZELOUD_BASIC_SERVER");
 
     @Override
     public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws Exception {
@@ -33,7 +32,7 @@ public class RequestInterceptor implements HandlerInterceptor {
             response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
             response.setStatus(HttpStatus.OK.value());
             return true;
-        } else if (!request.getRequestURI().startsWith("/basic") || !needLogin(handler)) {
+        } else if (!request.getRequestURI().startsWith("/zeloud/satoken") || !needLogin(handler)) {
             return true;
         }
 

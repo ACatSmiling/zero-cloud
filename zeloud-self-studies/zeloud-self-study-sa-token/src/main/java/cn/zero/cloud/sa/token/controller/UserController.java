@@ -1,4 +1,4 @@
-package cn.zero.cloud.platform.satoken.controller;
+package cn.zero.cloud.sa.token.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    // 测试登录，浏览器访问： http://localhost:9528/basic/user/doLogin?username=zhang&password=123456
+    // 测试登录，浏览器访问： http://localhost:9528/zeloud/satoken/user/doLogin?username=zhang&password=123456
     @GetMapping(value = "/doLogin", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public String doLogin(String username, String password) {

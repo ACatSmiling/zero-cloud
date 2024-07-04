@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: zeloud-self-study-sa-token
+  profiles:
+    default: dev
+
+server:
+  port: 4211
+  servlet:
+    context-path: /zeloud/satoken
