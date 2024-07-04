@@ -3,6 +3,8 @@ spring:
     name: zeloud-business-service
   profiles:
     default: dev
+  banner:
+    location: banner/banner.txt
 
 server:
   port: 9527
