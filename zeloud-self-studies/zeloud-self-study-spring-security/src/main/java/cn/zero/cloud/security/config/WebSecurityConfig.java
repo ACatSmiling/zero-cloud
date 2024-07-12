@@ -107,14 +107,14 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityExpressionHandler<RequestAuthorizationContext> httpExpressionHandler() {
+    public SecurityExpressionHandler<RequestAuthorizationContext> securityExpressionHandler() {
         return new PrivilegeHttpSecurityExpressionHandler();
     }
 
     @Bean
     public AuthorizationManager<RequestAuthorizationContext> authorizationManager() {
         WebExpressionAuthorizationManager authorizationManager = new WebExpressionAuthorizationManager("isLoggedIn()");
-        authorizationManager.setExpressionHandler(httpExpressionHandler());
+        authorizationManager.setExpressionHandler(securityExpressionHandler());
         return authorizationManager;
     }
 
