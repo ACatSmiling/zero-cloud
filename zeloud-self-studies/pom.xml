@@ -19,6 +19,7 @@
         <module>zeloud-self-study-redis-distributed-lock-2</module>
         <module>zeloud-self-study-redis-redlock</module>
         <module>zeloud-self-study-sa-token</module>
+        <module>zeloud-self-study-spring</module>
         <module>zeloud-self-study-spring-security</module>
     </modules>
 </project>
