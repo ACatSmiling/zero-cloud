@@ -135,6 +135,13 @@
                 <artifactId>feign-core</artifactId>
                 <version>13.1</version>
             </dependency>
+
+            <!-- netty-all -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>4.1.114.Final</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
