@@ -23,12 +23,12 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Xisun Wang
- * @since 2024/3/21 11:12
- * <p>
  * 序列化：Serialization，是指将 Java 对象转换为 JSON 格式的字符串的过程
  * 反序列化：Deserialization，是指将 JSON 格式的字符串转换回 Java 对象的过程
  * <a href="https://github.com/FasterXML/jackson">FasterXML/jackson</a>
+ *
+ * @author Xisun Wang
+ * @since 2024/3/21 11:12
  */
 public class ZeloudJsonUtil {
 
