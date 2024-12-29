@@ -14,6 +14,7 @@
     <modules>
         <module>zeloud-self-study-easy-excel</module>
         <module>zeloud-self-study-juc</module>
+        <module>zeloud-self-study-kafka</module>
         <module>zeloud-self-study-netty</module>
         <module>zeloud-self-study-redis</module>
         <module>zeloud-self-study-redis-distributed-lock-1</module>
