@@ -25,6 +25,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableConfigurationProperties({TaskExecutionProperties.class})
 @EnableAsync // 启用 Spring 的异步方法执行能力，@Async 注解标注的方法，Spring 会启动异步线程来执行
 public class ZeloudAsyncTaskAutoConfiguration implements AsyncConfigurer {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ZeloudAsyncTaskAutoConfiguration.class);
 
     public static final String NOTIFY_THREAD_POOL_TASK_EXECUTOR = "NOTIFY_THREAD_POOL_TASK_EXECUTOR";

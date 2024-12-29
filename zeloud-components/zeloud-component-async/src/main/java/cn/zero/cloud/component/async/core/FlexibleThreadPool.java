@@ -9,6 +9,7 @@ import java.util.concurrent.*;
  * @since 7/3/2024 09:58
  */
 public class FlexibleThreadPool {
+
     private static final int CORE_POOL_SIZE = 20;
     private static final int MAX_POOL_SIZE = 50;
     private static final long KEEP_ALIVE_MINUTES = 3L;
