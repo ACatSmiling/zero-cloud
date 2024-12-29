@@ -14,6 +14,7 @@ import java.util.Map;
  * @since 2024/3/26 16:05
  */
 public class RestResponseExceptionResolver extends AbstractExceptionResolver {
+    
     private static final String CUSTOMIZE_STATUS = "customizeStatus";
 
     @Override

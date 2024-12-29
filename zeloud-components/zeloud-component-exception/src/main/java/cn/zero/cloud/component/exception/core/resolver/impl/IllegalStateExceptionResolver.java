@@ -13,6 +13,7 @@ import java.util.Map;
  * @since 2024/3/26 16:14
  */
 public class IllegalStateExceptionResolver extends AbstractExceptionResolver {
+
     @Override
     protected String getExceptionResolverName() {
         return "illegalStateExceptionResolver";

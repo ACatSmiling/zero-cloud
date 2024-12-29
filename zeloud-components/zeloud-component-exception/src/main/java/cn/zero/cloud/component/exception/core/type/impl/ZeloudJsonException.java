@@ -7,12 +7,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 返回Json响应体时使用
+ * 返回 Json 响应体时使用
  *
  * @author Xisun Wang
  * @since 2024/3/26 17:03
  */
 public class ZeloudJsonException extends RuntimeException implements CommonException {
+
     @Serial
     private static final long serialVersionUID = -7389426743866292100L;
 

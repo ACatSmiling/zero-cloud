@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
  */
 @AutoConfiguration
 public class ZeloudExceptionAutoConfiguration {
+    
     @Bean
     public GlobalExceptionHandler globalExceptionHandler() {
         return new GlobalExceptionHandler();

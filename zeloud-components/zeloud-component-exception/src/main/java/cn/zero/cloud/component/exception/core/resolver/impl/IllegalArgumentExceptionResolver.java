@@ -13,6 +13,7 @@ import java.util.Map;
  * @since 2024/3/26 16:13
  */
 public class IllegalArgumentExceptionResolver extends AbstractExceptionResolver {
+
     @Override
     protected String getExceptionResolverName() {
         return "illegalArgumentExceptionResolver";

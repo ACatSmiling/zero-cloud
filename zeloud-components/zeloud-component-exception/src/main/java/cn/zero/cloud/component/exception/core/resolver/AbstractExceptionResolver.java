@@ -18,6 +18,7 @@ import java.util.Map;
  * @since 2024/3/26 16:03
  */
 public abstract class AbstractExceptionResolver {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractExceptionResolver.class);
 
     protected static final String MESSAGE = "message";
@@ -83,10 +84,10 @@ public abstract class AbstractExceptionResolver {
     }
 
     /**
-     * 生成响应体的body
+     * 生成响应体的 body
      *
      * @param message 异常信息描述
-     * @return 响应体的body
+     * @return 响应体的 body
      */
     protected Map<String, Object> generateMessageBody(String message) {
         Map<String, Object> body = new LinkedHashMap<>();

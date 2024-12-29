@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
@@ -49,7 +50,7 @@ public class GlobalExceptionHandler {
 
     /**
      * 特定类型的异常处理，返回字符串做响应体
-     * 注意：需添加@ResponseBody注解，否则Spring会尝试解析这个字符串为视图名称，并跳转到相应的视图
+     * 注意：需添加 @ResponseBody 注解，否则 Spring 会尝试解析这个字符串为视图名称，并跳转到相应的视图
      * 如果没有对应的视图解析成功，可能会出现将字符串作为下一次请求路径的情况
      *
      * @param e 待处理的异常

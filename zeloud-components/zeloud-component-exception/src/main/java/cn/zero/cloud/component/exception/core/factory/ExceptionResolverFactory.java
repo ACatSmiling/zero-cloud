@@ -17,6 +17,7 @@ import java.util.function.Supplier;
  * @since 2024/3/26 16:00
  */
 public final class ExceptionResolverFactory {
+
     private ExceptionResolverFactory() {
         throw new IllegalStateException(ExceptionConstants.UTILITY_CLASS);
     }
@@ -77,8 +78,8 @@ public final class ExceptionResolverFactory {
     }
 
     public static void main(String[] args) {
-        System.out.println(Object.class.isAssignableFrom(Integer.class)); // true，因为Integer是Object的子类
-        System.out.println(Integer.class.isAssignableFrom(Object.class));// false，因为Object不是Integer的子类
+        System.out.println(Object.class.isAssignableFrom(Integer.class)); // true，因为 Integer 是 Object 的子类
+        System.out.println(Integer.class.isAssignableFrom(Object.class));// false，因为 Object 不是 Integer 的子类
         System.out.println(Object.class.isAssignableFrom(Object.class));// true，因为是同一个类型
     }
 }

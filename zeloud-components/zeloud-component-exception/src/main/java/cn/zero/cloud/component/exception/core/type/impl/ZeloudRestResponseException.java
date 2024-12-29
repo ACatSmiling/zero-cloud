@@ -11,6 +11,7 @@ import java.util.Map;
  * @since 2024/3/26 16:04
  */
 public class ZeloudRestResponseException extends RuntimeException implements CommonException {
+
     @Serial
     private static final long serialVersionUID = 7334456646535372527L;
 

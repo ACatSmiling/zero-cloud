@@ -15,6 +15,7 @@ import java.util.Map;
  * @since 2024/3/26 16:06
  */
 public class GlobalExceptionResolver extends AbstractExceptionResolver {
+
     @Override
     protected String getExceptionResolverName() {
         return "globalExceptionResolver";
