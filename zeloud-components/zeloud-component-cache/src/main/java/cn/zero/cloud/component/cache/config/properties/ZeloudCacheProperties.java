@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "zero.cloud.cache")
 public class ZeloudCacheProperties {
+
     /**
      * {@link #redisScanBatchSize} 默认值
      */

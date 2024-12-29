@@ -17,6 +17,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
  */
 @AutoConfiguration
 public class ZeloudRedisAutoConfiguration {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ZeloudRedisAutoConfiguration.class);
 
     @Bean
@@ -29,7 +30,7 @@ public class ZeloudRedisAutoConfiguration {
         redisTemplate.setKeySerializer(RedisSerializer.string());
         redisTemplate.setHashKeySerializer(RedisSerializer.string());
 
-        // 使用 JSON 序列化方式 (使用的是 Jackson 库)，序列化 value
+        // 使用 JSON 序列化方式（使用的是 Jackson 库），序列化 value
         redisTemplate.setValueSerializer(buildRedisSerializer());
         redisTemplate.setHashValueSerializer(buildRedisSerializer());
 

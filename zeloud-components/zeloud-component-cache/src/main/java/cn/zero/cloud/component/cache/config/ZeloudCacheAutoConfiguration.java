@@ -39,6 +39,7 @@ import static cn.zero.cloud.component.cache.config.ZeloudRedisAutoConfiguration.
 @EnableConfigurationProperties({CacheProperties.class, ZeloudCacheProperties.class})
 @EnableCaching // 开启缓存支持
 public class ZeloudCacheAutoConfiguration {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ZeloudCacheAutoConfiguration.class);
 
     @Bean
@@ -117,7 +118,7 @@ public class ZeloudCacheAutoConfiguration {
     public CacheManager cacheManager(CacheManager caffeineCacheManager,
                                      CacheManager redisCacheManager,
                                      CacheProperties cacheProperties) {
-        // 根据配置，确定优先使用的 CacheManager
+        // 根据配置文件中 spring.cache.type 的配置，确定优先使用的 CacheManager
         // 如果想在特定的缓存操作中使用非默认的缓存管理器，可以在 @Cacheable、@CachePut、@CacheEvict 等注解中指定 cacheManager 属性
         CacheType cacheType = cacheProperties.getType();
         return switch (cacheType) {
