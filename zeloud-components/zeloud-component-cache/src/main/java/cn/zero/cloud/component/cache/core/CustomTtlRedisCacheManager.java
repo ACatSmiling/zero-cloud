@@ -18,6 +18,7 @@ import java.time.Duration;
  * @since 7/1/2024 14:28
  */
 public class CustomTtlRedisCacheManager extends RedisCacheManager {
+
     private static final String SPLIT = "#";
 
     public CustomTtlRedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration) {
